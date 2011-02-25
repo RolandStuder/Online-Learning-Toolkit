@@ -1,0 +1,11 @@
+<table>
+
+<% @feedbacks.each do |f| %>
+		<tr>
+			<td><%= f.id %> </td>
+			<td><%= f.peer_review_assignment.id %> </td>
+			<td><%= f.peer_review_solution.id %></td>
+		</tr>
+<% end %>
+
+</table>

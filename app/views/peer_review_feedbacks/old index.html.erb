@@ -1,0 +1,29 @@
+<h1>Your feedback for others submission</h1>
+
+<p>You have given <%= @feedbacks.count %> of <%= @peer_review.number_of_feedbacks %> feedbacks.</p>
+
+<table>
+  <tr>
+    <th>Text</th>
+    <th>Peer review assignment</th>
+    <th>Peer review solution</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @peer_review_feedbacks.each do |peer_review_feedback| %>
+  <tr>
+    <td><%= peer_review_feedback.text %></td>
+    <td><%= peer_review_feedback.peer_review_assignment %></td>
+    <td><%= peer_review_feedback.peer_review_solution %></td>
+    <td><%= link_to 'Show', peer_review_feedback %></td>
+    <td><%= link_to 'Edit', edit_peer_review_feedback_path(peer_review_feedback) %></td>
+    <td><%= link_to 'Destroy', peer_review_feedback, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Peer review feedback', :action => 'new', :id => @assignment.id %>

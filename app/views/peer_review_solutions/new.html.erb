@@ -1,0 +1,10 @@
+<h1>Submit a solution for:
+	<br><%= @peer_review.title %></h1>
+
+<h2>Task description</h2>
+
+<%= simple_format(auto_link(@peer_review.task)) %>
+
+<h2>Enter your solution</h2>
+
+<%= render '/peer_review_solutions/form' %>

@@ -1,0 +1,27 @@
+You set up a new peer review:
+
+<%= @peer_review.title %>
+
+Task:
+-----
+
+<%= @peer_review.task %>
+
+Feedback:
+---------
+
+<%= @peer_review.feedback_instructions %>
+
+Solution due: <%= @peer_review.solution_due.to_s(:long) %>
+Feedback due: <%= @peer_review.feedback_due.to_s(:long) %>
+
+Number of feedbacks: <%= @peer_review.number_of_feedbacks %>
+
+
+Participants:
+-------------
+<% @users.each do |user| %>
+	- <%= user.email %>
+<% end %>
+
+

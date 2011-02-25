@@ -1,0 +1,19 @@
+Here is your feedback for your solution:
+
+<%= @peer_review.title %>
+----------------------------------------
+
+Your solution:
+----------------------------------------
+
+<%= @solution %>
+
+
+Feedback for your solution:
+----------------------------------------
+
+
+<% @feedbacks.each do |feedback| %>
+<%= feedback.text %>
+----------------------------------------
+<% end %>

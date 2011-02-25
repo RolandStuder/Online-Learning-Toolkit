@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>setup.html</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="Roland Studer">
+	<!-- Date: 2011-02-09 -->
+	<%= render 'style' %>
+</head>
+
+<body>
+	<%= @peer_review.email%> has assigned a task to you:
+
+	<h1><%= @peer_review.title %></h1>
+
+	<p>Please follow these instructions</p>
+
+	<h2>Task instructions</h2>
+	<%= simple_format(auto_link(@peer_review.task)) %>
+
+	<h2>Your solution is due until <b><%= @peer_review.solution_due %></b>.</h2>
+
+
+	<h2><%= link_to "Submit your solution", peer_review_assignment_url(@assignment) %><h2>
+
+</body>
+</html>

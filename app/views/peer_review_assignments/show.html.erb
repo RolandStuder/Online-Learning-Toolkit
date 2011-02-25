@@ -1,0 +1,45 @@
+<h1>Task:<br /><%= @peer_review.title %></h1>
+
+
+<% unless notice.nil? %>
+	<p class="notice"><%= notice %></p>
+<% end %>
+
+
+<% if @solution.nil? %>
+
+	<h2>You have not yet submitted your solution.</h2>
+	<p><%= link_to 'Submit solution', '/peer_review_assignments/' +  params[:id] + '/peer_review_solutions/new'%></p>
+
+<% else %>
+	<h2>Your solution:</h2>
+	<%= simple_format(@solution.text) %>
+	<% unless @peer_review.reviewing? %>
+		<%= link_to "edit", "/peer_review_assignments/" + @assignment.id.to_s + "/peer_review_solutions/" + @solution.id.to_s + "/edit" %>
+	<% end %>
+	
+<% end%>
+
+<% if @peer_review.reviewing? %>
+	<h2>Your feedbacks:</h2>
+
+	<p>You need to give <%= @peer_review.number_of_feedbacks %> feedbacks.</p>
+
+	<!-- <p>You have given <%= @feedbacks.count %> of <%= @peer_review.number_of_feedbacks %> feedbacks.</p> -->
+
+
+
+
+	<ul>
+		<% @feedbacks.each_with_index do |feedback, index| %>
+				<li>
+						<% if feedback.text.nil? %>
+							<%= link_to "Give Feedback #{index+1}", edit_peer_review_feedback_path(feedback) %>
+						<% else %>
+							Feeback <%= index %> given <%= link_to "edit", edit_peer_review_feedback_path(feedback) %>
+							
+						<% end %>
+				</li>
+		<% end %>
+	</ul>
+<% end %>

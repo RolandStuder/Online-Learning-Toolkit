@@ -1,0 +1,22 @@
+<%= form_for([@assignment, @assignment.peer_review_solutions.build]) do |f| %>
+  <% if @solution.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@solution.errors.count, "error") %> prohibited this Solution from being saved:</h2>
+
+      <ul>
+      <% @solution.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_area :text %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit 'Save' %>
+  </div>
+<% end %>

@@ -1,0 +1,12 @@
+<h1>New peer_review_feedback</h1>
+
+<h2>Solution to review</h2>
+<p><%= @solution.text %></p>
+
+<h2>Feedback instructions</h2>
+
+<p><%= simple_format(@peer_review.feedback_instructions) %></p>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', peer_review_feedbacks_path %>

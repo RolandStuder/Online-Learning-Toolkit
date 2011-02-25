@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Text:</b>
+  <%= @peer_review_feedback.text %>
+</p>
+
+<p>
+  <b>Peer review assignment:</b>
+  <%= @peer_review_feedback.peer_review_assignment %>
+</p>
+
+<p>
+  <b>Peer review solution:</b>
+  <%= @peer_review_feedback.peer_review_solution %>
+</p>
+
+
+<%= link_to 'Edit', edit_peer_review_feedback_path(@peer_review_feedback) %> |
+<%= link_to 'Back', peer_review_feedbacks_path %>

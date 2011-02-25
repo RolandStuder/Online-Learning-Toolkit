@@ -1,0 +1,12 @@
+Please provide feedback for the task:
+
+<%= @peer_review.title %>
+
+Please follow these instructions:
+
+<%= @peer_review.feedback_instructions %>
+
+Your feedback is due until <%= @peer_review.feedback_due.to_s(:long) %>.
+
+Submit your solution here: 
+<%= peer_review_assignment_url(@assignment) %>

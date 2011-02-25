@@ -1,0 +1,12 @@
+<h1>Your solution for task:<br><%= @peer_review.title %></h1>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= simple_format(auto_link(@solution.text)) %>
+</p>
+
+<%= link_to 'Edit your solution', edit_peer_review_solution_path(@solution) %>
+
+
+<p>The next step will be to review others solutions, you will be informed by email.</p>

@@ -1,0 +1,59 @@
+<%= form_for  @peer_review do |f| %>
+    <% if @peer_review.errors.any? %>  
+	    <div id="errorExplanation">  
+	      <h2><%= pluralize(@peer_review.errors.count, "error") %></h2>  
+	      <ul>  
+	      <% @peer_review.errors.full_messages.each do |msg| %>  
+	        <li><%= msg %></li>  
+	      <% end %>  
+	      </ul>  
+	    </div>  
+    <% end %>		
+	
+	<%= f.label :title %>
+	<%= f.text_field :title, :class => "big" %>
+	
+	<%= f.label "Your Email" %>
+	<p>You will receive email, that let you check up on the progress.</p>
+	<%= f.text_field :email  %>
+	
+	
+	
+	<fieldset>
+		<legend>Task:</legend>
+
+		<%= f.label "Task instructions" %>
+		<p>Participants will receive these instructions by email.</p>
+		<%= f.text_area :task %>
+	
+		<label>Solutions are due until</label>
+			<%= f.datetime_select :solution_due, :minute_step => 15  %>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Peerreview:</legend>
+	
+	
+
+		<%= f.label :feedback_instructions %>
+		<p>Participants will be shown these instructions, when asked to review others submissions. (Feedback is anonmyous)</p>
+		<%= f.text_area :feedback_instructions, :value => @default_feedback_text %>
+
+		<%= f.label "Number of feedbacks"%>
+		<p><%= f.select :number_of_feedbacks, [1,2,3,4,5],:selected => [3] %>
+		 Define how many feedbacks each participant will give/receive.</p>
+		
+
+		<%= f.label :feedback_due, "Feedbacks are due until"%>
+		<%= f.datetime_select :feedback_due, :minute_step => 15  %>
+	
+	</fieldset>
+	
+	
+	<%= f.submit "Save", :class => "primary "%>
+	<span>or</span> 
+	<%= link_to 'Reset', new_peer_review_path %>
+	
+	
+
+<% end %>

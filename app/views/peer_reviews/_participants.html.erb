@@ -1,0 +1,20 @@
+<section class="participants">
+	<h2><%= @users.length %> Participants</h2>
+	<table>
+		<tr>
+			<th></th>
+			<th></th>
+			<th>Solution</th>
+			<th>Feedbacks</th>
+		</tr>
+
+	<% @assignments.each do |a| %>
+		<tr class="<%= cycle("even", "odd") -%>">
+			<td><%= link_to a.id, a %></td>
+			<td><%= a.user.email %></td>
+			<td><% if a.peer_review_solutions.first %><span class="ok" /><% end %></td>
+			<td><% a.peer_review_feedbacks.each do |f| %><% unless f.text.nil? %><span class="ok"></span><% end %><% end %></td>
+		</tr>
+	<% end %>
+	</table>
+</section>

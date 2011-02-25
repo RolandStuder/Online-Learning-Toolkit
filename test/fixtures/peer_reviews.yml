@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: Fallstudie
+  task: Ursprünglich wurden angehenden Juristen ein tatsächlicher oder ein fingierter „Fall“ vorgelegt, den es zu bearbeiten galt. Inzwischen sind Fallstudien in weiteren Ausbildungs- und Lehrgängen üblich. Beispiele finden Sie am Schluss dieser Seite.
+  solution_due: <%= Time.now %>
+  feedback_instructions: Gib Feedback
+  feedback_due: <%= Time.now+1.hour %>
+  email: roland.studer@gmail.com
+
+two:
+  title: EDNOS
+  task: Suchen Sie nach Gründen, die einen bestimmten Sachverhalt zu so einem Problem gemacht haben, dass eine Lösung gefunden werden muss. (Warum kann der bisherige Zustand nicht aufrecht erhalten werden, oder kann er es doch?) Historische Perspektive: Welche Entwicklungen, Ereignisse sind eingetreten, die die Situation so verändert haben, dass Handlungsbedarf besteht?
+  solution_due: <%= Time.now %>
+  feedback_instructions: Gib Feedback
+  feedback_due: <%= Time.now+1.hour %>
+  email: roland.studer@gmail.com

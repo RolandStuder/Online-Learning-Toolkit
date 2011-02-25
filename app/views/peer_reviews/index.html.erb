@@ -1,0 +1,21 @@
+<h1>Listing Peer Reviews</h1>
+
+<table>
+  <tr>
+    <th>Started</th>
+    <th>Title</th>
+    <th>Email</th>
+  </tr>
+
+<% @peer_reviews.each do |peer_review| %>
+  <tr>
+    <td><%= peer_review.status %></td>
+    <td><%= link_to peer_review.title, peer_review %></td>
+    <td><%= peer_review.email %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Peer review', new_peer_review_path %>

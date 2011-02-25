@@ -1,0 +1,8 @@
+<h1>Give Feedback for the solution</h1>
+
+<h2>Solution for task:<br><%= @peer_review.title %></h2>
+
+<%= simple_format(@solution.text)%>
+<%= render 'form' %>
+
+<%= link_to 'Back', peer_review_assignment_path(@assignment) %>

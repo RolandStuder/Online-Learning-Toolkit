@@ -1,0 +1,12 @@
+<%= @peer_review.email%> has assigned a task to you:
+
+<%= @peer_review.title %>
+
+Please follow these instructions:
+
+<%= @peer_review.task %>
+
+Your solution is due until <%= @peer_review.solution_due %>.
+
+Submit your solution here: 
+<%= peer_review_assignment_url(@assignment) %>

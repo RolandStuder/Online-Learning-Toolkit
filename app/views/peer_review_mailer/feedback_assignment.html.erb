@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>setup.html</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="Roland Studer">
+	<!-- Date: 2011-02-09 -->
+	<%= render 'style' %>
+</head>
+
+<body>
+<p>Please provide feedback for the task:</p>
+
+<h1><%= @peer_review.title %></h1>
+
+<h2>Please follow these instructions:</h2>
+
+<%= simple_format(@peer_review.feedback_instructions) %>
+
+<p>Your feedback is due until <%= @peer_review.feedback_due.to_s(:long) %>.</p>
+
+<p>Submit your solution here: </p>
+<h2><%= peer_review_assignment_url(@assignment) %></h2>
+</body></html>

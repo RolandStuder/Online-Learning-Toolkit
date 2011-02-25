@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  text: MyText
+  peer_review_assignment: 
+  peer_review_solution: 
+
+two:
+  text: MyText
+  peer_review_assignment: 
+  peer_review_solution: 
