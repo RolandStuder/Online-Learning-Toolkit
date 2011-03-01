@@ -2,7 +2,7 @@ class PeerReviewsController < ApplicationController
   # GET /peer_reviews
   # GET /peer_reviews.xml
   
-  before_filter :authorize, :only => :index
+  # before_filter :authorize, :only => :index
   
   def index
     @peer_reviews = PeerReview.all
