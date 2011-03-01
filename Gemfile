@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.3'
 gem 'exception_notification_rails3', :require => 'exception_notifier'
 gem 'whenever', :require => false
-gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"
+gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
 gem "rails3-generators"
 
 

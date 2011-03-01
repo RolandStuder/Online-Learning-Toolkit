@@ -8,10 +8,13 @@ App::Application.routes.draw do
 
   resources :users
   
-  get 'login' => 'user_session#new', :as => :login
-  post 'login' => 'user_session#create', :as => :login
-  delete 'logout' => 'user_session#destroy', :as => :logout
+  get 'login' => 'user_sessions#new', :as => :login
+  post 'login' => 'user_sessions#create', :as => :login
+  delete 'logout' => 'user_sessions#destroy', :as => :logout
 
+  resources :user_sessions
+  
+  
 
   resources :peer_review_assignments do
     get 'solution'

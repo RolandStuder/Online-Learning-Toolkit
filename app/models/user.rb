@@ -5,4 +5,6 @@ class User < ActiveRecord::Base
   has_many :peer_reviews, :through => :peer_review_assignments
   has_many :peer_review_assignments
   has_many :peer_review_solutions, :through => :peer_review_assignments
+  
+  acts_as_authentic
 end

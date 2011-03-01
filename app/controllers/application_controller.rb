@@ -6,6 +6,13 @@ class ApplicationController < ActionController::Base
   helper_method :admin?
   helper_method :current_user_session, :current_user
   
+  before_filter :get_session
+  
+  
+  def get_session
+    return true
+  end
+  
   private
   
   def current_user_session

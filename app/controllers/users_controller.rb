@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  acts_as_authentic
+  # acts_as_authentic
   
   
   # GET /users
