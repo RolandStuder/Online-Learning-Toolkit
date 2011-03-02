@@ -51,9 +51,7 @@ class PeerReviewSolutionsController < ApplicationController
     @solution.save
     @peer_review = @assignment.peer_review
     
-    # if @peer_review.peer_review_assignments.length == @peer_review.peer_review_solutions.length #start feedbacks when all solutions are in.
-    #   @peer_review.start_feedbacks
-    # end
+    @peer_review.start_feedbacks?
     
     redirect_to peer_review_assignment_path(@assignment), :notice => "You solution has been saved."
   end
@@ -66,7 +64,8 @@ class PeerReviewSolutionsController < ApplicationController
     @peer_review = @solution.peer_review
     
     
-
+    @peer_review.start_feedbacks?
+    
     respond_to do |format|
       if @solution.update_attributes(params[:peer_review_solution])
         format.html { redirect_to(@assignment, :notice => 'Peer review solution was successfully updated.') }

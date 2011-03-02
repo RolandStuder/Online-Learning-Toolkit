@@ -25,6 +25,12 @@ class PeerReview < ActiveRecord::Base
     end
   end
   
+  def start_feedbacks?
+    if @peer_review.peer_review_assignments.length == @peer_review.peer_review_solutions.length #start feedbacks when all solutions are in.
+      @peer_review.start_feedbacks
+    end
+  end
+  
   def start_feedbacks
     @peer_review = PeerReview.find(id)
     @peer_review.reviewing = true
