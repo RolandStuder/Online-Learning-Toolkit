@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
   
   before_filter :get_session
+  before_filter :authorize, :only => :destroy
+  
   
   
   def get_session
@@ -58,16 +60,10 @@ class ApplicationController < ActionController::Base
   
   
   protected
-  
-  def admin?
-    false
-  end
-  
+    
   def authorize
-    unless admin?
-      flash[:error] = "unauthorized acess"
-      redirect_to "/"
-      false
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "admin" && password == "82-http-basic"
     end
   end
   

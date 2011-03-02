@@ -21,7 +21,7 @@
 	<h2>Task instructions</h2>
 	<%= simple_format(auto_link(@peer_review.task)) %>
 
-	<h2>Your solution is due until <b><%= @peer_review.solution_due %></b>.</h2>
+	<h2>Your solution is due until <b><%= @peer_review.solution_due(:long) %></b>.</h2>
 
 
 	<h2><%= link_to "Submit your solution", peer_review_assignment_url(@assignment) %><h2>

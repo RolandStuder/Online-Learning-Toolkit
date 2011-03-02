@@ -6,7 +6,7 @@ Please follow these instructions:
 
 <%= @peer_review.task %>
 
-Your solution is due until <%= @peer_review.solution_due %>.
+Your solution is due until <%= @peer_review.solution_due(:long) %>.
 
 Submit your solution here: 
 <%= peer_review_assignment_url(@assignment) %>

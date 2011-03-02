@@ -12,7 +12,9 @@
 <header>
 	<%= link_to "Home", '/' %>
 	<%= link_to "New", '/peer_reviews/new' %>
-	<%= link_to "Peer Reviews", '/peer_reviews' %>
+	<% if Rails.env.development? %>
+		<%= link_to "Peer Reviews", '/peer_reviews' %>
+	<% end %>
 	
 </header>
 	
