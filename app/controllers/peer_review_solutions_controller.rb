@@ -61,7 +61,7 @@ class PeerReviewSolutionsController < ApplicationController
   def update
     @solution = PeerReviewSolution.find(params[:id])
     @assignment = @solution.peer_review_assignment
-    @peer_review = @solution.peer_review
+    @peer_review = @assignment.peer_review
     
     
     @peer_review.start_feedbacks?
