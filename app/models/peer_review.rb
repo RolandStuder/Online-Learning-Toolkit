@@ -8,7 +8,7 @@ class PeerReview < ActiveRecord::Base
   
   validates :email, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}  
   
-  validate :timeliness_given
+  # validate :timeliness_given
   
   #MODEL Methods
   #################
