@@ -173,7 +173,7 @@ class PeerReviewsController < ApplicationController
     @peer_review = PeerReview.find(params[:id])
     @assignment = @peer_review.peer_review_assignments.find_by_admin(true)
     @admin = @assignment.user
-    unless session[:user_id]== @admin.id
+    unless session[:user_id]== @admin.id || session[:super_user] == true
       redirect_to "/", :notice => "No Acesss, this is not your exercise"
     end
   end

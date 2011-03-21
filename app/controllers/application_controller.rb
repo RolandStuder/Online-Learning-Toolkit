@@ -66,9 +66,10 @@ class ApplicationController < ActionController::Base
   protected
     
   def authorize
-    # authenticate_or_request_with_http_basic do |username, password|
-    #   username == "admin" && password == "82-http-basic"
-    # end
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "admin" && password == "82-http-basic"
+      session[:super_user] = true
+    end
   end
   
   
