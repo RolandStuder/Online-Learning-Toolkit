@@ -88,3 +88,11 @@ ol.task {
 .block {
 	display: block;
 }
+
+.ok {
+	color: #249900;
+}
+
+.ok:before {
+	content: "✓";
+}
