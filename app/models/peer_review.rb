@@ -51,7 +51,6 @@ class PeerReview < ActiveRecord::Base
     end
     
     PeerReviewMailer.status(@peer_review).deliver
-    
   end
   
   def check_if_feedback_is_complete
@@ -68,7 +67,13 @@ class PeerReview < ActiveRecord::Base
     end
   end
   
-  
+  def participants
+    @assignments = self.peer_review_assignments.where(:participant => true)
+    # @assignments.each do |a|
+    #   participants = a.user
+    # end
+    return @assignments
+  end
   
   #CLASS Methods
   #################

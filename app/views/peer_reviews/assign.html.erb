@@ -11,18 +11,20 @@
 </head>
 <body>
 	<%= link_to "back", edit_peer_review_path(@peer_review), :class => "back"%>
-	<p id="notice"><%= notice %></p>
 	
 	<h1>Assign users to task:<br> <%= @peer_review.title %></h1>			
 
 		<%= form_tag('assign_participants') do %>
-			<p>Enter the participants email adresses here, seperated by comma or on separate lines</p>
+			<p>Enter the participants email adresses here, separated by comma or on separate lines</p>
 			<%= text_area_tag 'participants', nil,:rows => 20, :cols => 40 %>
-			<%= submit_tag "add participants"%>
+			<%= submit_tag "add participants", :class => "primary-button breathe"%>
 		<% end %>
 		
-		<ul><% @users.each do |user| %>
-			<%= user.email %>
-		<% end%></ul>
+		<h2>Current participants</h2>
+		<ul>
+		<% @peer_review.participants.each do |p| %>
+			<li><%= p.user.email %></li>
+		<% end%>
+		</ul>
 </body>
 </html>

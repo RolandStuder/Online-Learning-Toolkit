@@ -11,6 +11,7 @@ App::Application.routes.draw do
   get 'login' => 'user_sessions#new', :as => :login
   post 'login' => 'user_sessions#create', :as => :login
   delete 'logout' => 'user_sessions#destroy', :as => :logout
+  get 'test' => 'user_sessions#test', :as => :test
 
   resources :user_sessions
   
@@ -30,7 +31,7 @@ App::Application.routes.draw do
           get 'assign'
           get 'temp'
           post 'assign_participants'
-          get 'start_feedbacks'
+          get 'start_feedbacks_manually'
           post 'start'
           get 'test'
         end

@@ -12,7 +12,11 @@ class ApplicationController < ActionController::Base
   
   
   def get_session
-    return true
+      unless params[:token].nil?
+        session.destroy
+        UserSession.new 
+        session[:user_id] = User.find_by_persistence_token(params[:token]).id
+      end
   end
   
   private
@@ -62,9 +66,9 @@ class ApplicationController < ActionController::Base
   protected
     
   def authorize
-    authenticate_or_request_with_http_basic do |username, password|
-      username == "admin" && password == "82-http-basic"
-    end
+    # authenticate_or_request_with_http_basic do |username, password|
+    #   username == "admin" && password == "82-http-basic"
+    # end
   end
   
   

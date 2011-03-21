@@ -15,12 +15,12 @@
 	
 	<%= f.label "Your Email" %>
 	<p>You will receive email, that let you check up on the progress.</p>
-	<%= f.text_field :email  %>
+	<%= f.text_field :email, :class => "big" %>
 	
 	
 	
 	<fieldset>
-		<legend>Task:</legend>
+		<legend>Task</legend>
 
 		<%= f.label "Task instructions" %>
 		<p>Participants will receive these instructions by email.</p>
@@ -31,7 +31,7 @@
 	</fieldset>
 	
 	<fieldset>
-		<legend>Peerreview:</legend>
+		<legend>Feedback</legend>
 	
 	
 
@@ -50,7 +50,7 @@
 	</fieldset>
 	
 	
-	<%= f.submit "Save", :class => "primary "%>
+	<%= f.submit "Save and continue", :class => "primary-button breathe"%>
 	<span>or</span> 
 	<%= link_to 'Reset', new_peer_review_path %>
 	

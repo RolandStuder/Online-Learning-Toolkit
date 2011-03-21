@@ -1,45 +1,87 @@
-<h1>Task:<br /><%= @peer_review.title %></h1>
+<h1><%= @peer_review.title %></h1>
 
 
 <% unless notice.nil? %>
 	<p class="notice"><%= notice %></p>
 <% end %>
 
+<!-- SUBMIT SOLUTION -->
 
-<% if @solution.nil? %>
-
-	<h2>You have not yet submitted your solution.</h2>
-	<p><%= link_to 'Submit solution', '/peer_review_assignments/' +  params[:id] + '/peer_review_solutions/new'%></p>
-
-<% else %>
-	<h2>Your solution:</h2>
-	<%= simple_format(@solution.text) %>
-	<% unless @peer_review.reviewing? %>
-		<%= link_to "edit", "/peer_review_assignments/" + @assignment.id.to_s + "/peer_review_solutions/" + @solution.id.to_s + "/edit" %>
-	<% end %>
+<% if @solution_late %>
+		<div class="failed">
+			<h2>Too late. You didn't submit a solution before the due date'</h2>
+		</div>
 	
-<% end%>
+<% elsif @solution_none %>
+	<div class="current">
+		<h2>1 Submit a solution</h2>
+		<p><%= link_to 'Submit solution', '/peer_review_assignments/' +  params[:id] + '/peer_review_solutions/new', :class => "primary-button small" %></p>
+	</div>
+<% elsif @feedback_started %>
+		<div class="done">
+			<h2>1 Submit a solution</h2>
+			<h3>Your solution</h3>
+			<%= simple_format h(truncate(@solution.text, :length => 200)) %>
+			<%= link_to "Show complete solution", "/peer_review_assignments/" + @assignment.id.to_s + "/peer_review_solutions/" + @solution.id.to_s + "/" %>
+		</div>
+<% elsif @solution_present %>
+	<div class="done">
+		<h2>1 Submit a solution</h2>
+		<h3>Your solution</h3>
+		<%= simple_format h(truncate(@solution.text, :length => 200)) %>
+		<%= link_to "edit", "/peer_review_assignments/" + @assignment.id.to_s + "/peer_review_solutions/" + @solution.id.to_s + "/edit" %>
+	</div>
+<% end %>
 
-<% if @peer_review.reviewing? %>
-	<h2>Your feedbacks:</h2>
-
-	<p>You need to give <%= @peer_review.number_of_feedbacks %> feedbacks.</p>
-
-	<!-- <p>You have given <%= @feedbacks.count %> of <%= @peer_review.number_of_feedbacks %> feedbacks.</p> -->
-
-
-
-
-	<ul>
+<!-- GIVE FEEDBACK -->
+	
+<% if @feedback_started == false %>
+	<div class="inactive">
+		<h2>2 Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
+		<p>Wait for feedback assignment (<%= @peer_review.solution_due(:long) %>)
+	</div>
+<% elsif @feedback_done %>
+		<div class="done">
+			<h2>2 Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
+			<% @feedbacks.each_with_index do |feedback, index| %>
+				<div>			
+					<%= index+1 %> Feedbacks given <%= link_to "show", peer_review_feedback_path(feedback) %>
+				</div>
+			<% end %>
+		</div>
+<% elsif @feedback_needed %>
+	<div class="current">
+		<h2>2 Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
 		<% @feedbacks.each_with_index do |feedback, index| %>
-				<li>
-						<% if feedback.text.nil? %>
-							<%= link_to "Give Feedback #{index+1}", edit_peer_review_feedback_path(feedback) %>
-						<% else %>
-							Feeback <%= index %> given <%= link_to "edit", edit_peer_review_feedback_path(feedback) %>
-							
-						<% end %>
-				</li>
+			<div>			
+				<% if feedback.text.nil? %>
+					<%= link_to "Give Feedback #{index+1}", edit_peer_review_feedback_path(feedback), :class => "primary-button block" %>
+				<% else %>
+				<%= index+1 %> Feedbacks given <%= link_to "show", peer_review_feedback_path(feedback) %>
+				<% end %>
+			</div>
 		<% end %>
-	</ul>
+	</div>
+<% end %>	
+
+<!-- READ FEEDBACK -->
+
+<% if @peer_review.reviewing == false %>
+	<div class="inactive">
+		<h2>3 Read feedback you got from your peers</h2>
+	</div>
+<% elsif @feedback_received %>
+	<div class="current">
+		<h2>3 Read feedback you got from your peers</h2>
+		<% @received_feedbacks.each do |r|%>
+			<div class="border-top">
+				<%= simple_format h(r.text) %>
+			</div>
+		<% end%>
+	</div>
+<% else %>
+<div class="inactive">
+	<h2>3 Read feedback you got from your peers</h2>
+	<p>Wait for feedback from others</p>
+</div>
 <% end %>

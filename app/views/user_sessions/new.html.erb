@@ -1,4 +1,18 @@
 <h1>UserSessions#new</h1>
 
 <%= @user_session %><br>
-<%= session[:user_id] %>
+
+<%= session.id %>
+
+<hr>
+
+<% @assignments.each do |a| %>
+	<%= a.id %><br>
+<% end %>
+
+<hr>
+
+<%= @session %>
+<%= params[:key]%>
+
+<%= @current_user.persistence_token %>

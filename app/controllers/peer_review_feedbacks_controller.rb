@@ -18,6 +18,8 @@ class PeerReviewFeedbacksController < ApplicationController
   # GET /peer_review_feedbacks/1.xml
   def show
     @peer_review_feedback = PeerReviewFeedback.find(params[:id])
+    @solution = @peer_review_feedback.peer_review_solution
+    @assignment = @peer_review_feedback.peer_review_assignment
 
     respond_to do |format|
       format.html # show.html.erb

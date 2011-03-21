@@ -9,29 +9,25 @@
 <body>
 
 <div class="container">
-<header>
+<!-- <div class="horizontal_link_list secondary padded" id="primary_navigation">
 	<%= link_to "Home", '/' %>
 	<%= link_to "New", '/peer_reviews/new' %>
 	<% if Rails.env.development? %>
 		<%= link_to "Peer Reviews", '/peer_reviews' %>
 	<% end %>
+</div> -->
 	
-</header>
-	
-	<% flash.each do |key, msg| %>
-	    <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_ #{key}" %>
-	    <%= content_tag :script, :type => "text/javascript" do -%>
-	        setTimeout("new Effect.Fade('notice_<%= key %>');", 15000);
-	    <% end %>
-	<% end %>
+	<% flash_messages %>
 	
 	
 <%= yield %>
-
-<footer>
+<div class="smaller silent border-top breathe-below span-12">
 	developed by <a href="mailto:roland.studer@psy.unibe.ch">roland.studer@psy.unibe.ch</a>, for <a href="http://www.edulap.ch">edulap</a>, <a href="http://www.unibe.ch">unibe</a>
-</footer>
 </div>
+
+
+</div>
+
 
 </body>
 </html>

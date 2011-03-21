@@ -3,6 +3,7 @@ class PeerReviewsController < ApplicationController
   # GET /peer_reviews.xml
   
   before_filter :authorize, :only => :index
+  before_filter :is_owner?, :only => [:show, :edit]
   
   def index
     @peer_reviews = PeerReview.all
@@ -59,8 +60,9 @@ class PeerReviewsController < ApplicationController
       else
         @admin = User.create(:email => @peer_review.email)
       end
+      session[:user_id] = @admin.id
       PeerReviewAssignment.create(:peer_review => @peer_review, :user => @admin, :admin => true )
-      redirect_to assign_peer_review_path(@peer_review), :notice =>'The Peer Review was successfully created'
+      redirect_to assign_peer_review_path(@peer_review), :notice => "Successfully created"
     else
       render :action => "new"
     end
@@ -96,6 +98,7 @@ class PeerReviewsController < ApplicationController
   
   def assign
     @peer_review = PeerReview.find(params[:id])
+    @peer_review.participants
     @users = @peer_review.users.all
         
   end
@@ -127,7 +130,7 @@ class PeerReviewsController < ApplicationController
     @errors = []
     
     if @users.count < @peer_review.number_of_feedbacks+1
-      flash[:error] = "You have to assign more people."
+      flash[:error] = "You need to assign more people, you cannot have less people then the number of feedbacks that have to be given."
       redirect_to :action => 'show'
     else
       unless @peer_review.started?
@@ -156,6 +159,23 @@ class PeerReviewsController < ApplicationController
     end
     
     
+  end
+  
+  def start_feedbacks_manually
+    @peer_review = PeerReview.find(params[:id])
+    @peer_review.start_feedbacks
+    redirect_to :action => "show", :notice => "Peer Review Feedbacks started, all participants have received an email with their assignment."    
+  end
+  
+  protected
+  
+  def is_owner?
+    @peer_review = PeerReview.find(params[:id])
+    @assignment = @peer_review.peer_review_assignments.find_by_admin(true)
+    @admin = @assignment.user
+    unless session[:user_id]== @admin.id
+      redirect_to "/", :notice => "No Acesss, this is not your exercise"
+    end
   end
   
   

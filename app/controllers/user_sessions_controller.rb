@@ -5,6 +5,8 @@ class UserSessionsController < ApplicationController
   def new
     @user_session = UserSession.new
     session[:user_id] = User.first.id
+    @current_user = User.find(session[:user_id])
+    @assignments = @current_user.peer_review_assignments.all
   end
 
   def create
@@ -22,4 +24,12 @@ class UserSessionsController < ApplicationController
     # flash[:notice] = "Logout successful!"
     # redirect_back_or_default new_user_session_url
   end
+  
+  def test 
+    @token = params[:token]
+    session.destroy
+    UserSession.new 
+    session[:user_id] = User.find_by_persistence_token(@token).id
+  end
+  
 end

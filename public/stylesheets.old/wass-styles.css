@@ -1,0 +1,7 @@
+#errorExplanation, .error {
+	color: #AB000A;
+    background-color: #FFBABA;   
+ 	border: 1px solid #D8000C;
+	padding: 10px;
+}
+

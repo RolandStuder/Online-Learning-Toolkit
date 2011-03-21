@@ -27,18 +27,28 @@
 <%= link_to 'Edit Peer Review', edit_peer_review_path(@peer_review) unless @peer_review.started? %>
 
 </fieldset>
+
+
 <%= render 'participants' %>
 <br />
 <%= link_to '+ Assign more participants', assign_peer_review_path(@peer_review) unless @peer_review.started? %>
 
-<section>
+<section class="breathe">
 	<%= form_for :peer_review, @peer_review, :url => {:action => 'start'} do %>
-		<%= submit_tag ("Confirm and start peer Review") unless @peer_review.started? %>
+		<%= submit_tag ("Confirm and start peer Review"), :class => "primary-button breathe" unless @peer_review.started? %>
 	<% end %>
 </section>
 
-<section>
+<section class="breathe">
 	<% if @peer_review.started? %>
-		<%= link_to "Show all contributions", "/peer_reviews/#{@peer_review.id}/peer_review_assignments" %>
+		<%= link_to "Show all contributions", "/peer_reviews/#{@peer_review.id}/peer_review_assignments", :class => "primary-button" %>
 	<% end%>
 </section>
+
+<% if @peer_review.started && @peer_review.reviewing == false %>
+<section class="breathe">
+		<%= link_to "Start Peer Feedback Now", "/peer_reviews/#{@peer_review.id}/start_feedbacks_manually", :class => "primary-button" %>
+</section>
+
+<% end %>
+

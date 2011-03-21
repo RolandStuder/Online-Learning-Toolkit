@@ -1,0 +1,36 @@
+/*Grid*/
+
+.span-1,
+.span-2,
+.span-3,
+.span-4,
+.span-5,
+.span-6,
+.span-7,
+.span-8,
+.span-9,
+.span-10,
+.span-11,
+.span-12 {
+	float: left;
+	margin-right: 1%;
+}
+
+
+.span-12 {	width: 99%; 		}
+.span-11 {	width: 90.666666%; 	}
+.span-10 {	width: 82.333333%; 	}
+.span-9 {	width: 74%;			}
+.span-8 {	width: 65.666666%%;	}
+.span-7 {	width: 57.333333%;	}
+.span-6 {	width: 49%; 		}
+.span-5 {	width: 57.333333%; 	}
+.span-4 {	width: 40.666666%; 	}
+.span-3 {	width: 24%;			}
+.span-2 {	width: 15.666666% 	}
+.span-1 {	width: 7.333333%; 	}
+
+.last {
+	clear: right;
+	margin-right: 0px;
+}

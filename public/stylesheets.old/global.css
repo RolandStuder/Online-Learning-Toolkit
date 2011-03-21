@@ -1,0 +1,80 @@
+.container {
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.container {
+	font-family: "Helvetica Neue", sans-serif;
+}
+
+
+#primary_navigation a:before {
+	content: "→ ";
+}
+
+#primary_navigation {
+	font-weight: bold;
+	font-size: 1.3em;
+}
+
+label, legend {
+	display: block;
+	font-weight: bold;
+	font-size: 130%;
+}
+
+label {
+	padding-top: 20px;
+	
+}
+
+fieldset {
+	padding: 20px;
+	margin-top: 30px;
+}
+
+a {
+	color: red;
+	text-decoration: none;
+}
+
+/* TASK OVERVIEW*/
+
+ol.task {
+	list-style-position: inside;
+	list-style: none;
+}
+
+ol.task li {
+	margin: 10px;
+	border: 3px solid #BBB;
+}
+
+ol.task li h2 {
+	padding: 10px;
+}
+
+ol.task li.current {
+	background-color: #FFD893;
+}
+
+ol.task li.current h2 {
+	background-color: #FFC66A;
+}
+
+
+
+ol.task li.done {
+	background-color: #DFFFCA;
+}
+
+ol.task li.done h2 {
+	background-color: #9FD67B;
+	width: 100%;
+	display: block;
+}
+
+
+ol.task li.inactive {
+	background-color: #A1A1A1;
+}
