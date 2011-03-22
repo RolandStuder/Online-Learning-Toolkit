@@ -8,7 +8,7 @@ class PeerReview < ActiveRecord::Base
   
   validates :email, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}  
   
-  # validate :timeliness_given
+  validate :timeliness_given
   
   #MODEL Methods
   #################
@@ -99,7 +99,11 @@ class PeerReview < ActiveRecord::Base
   
   
   def timeliness_given
-    errors.add(:solution_due, 'should be in the future') if solution_due.nil? || solution_due < Time.now
+    if created_at.nil?
+      errors.add(:solution_due, 'should be in the future') if solution_due.nil? || solution_due < Time.now
+    else
+      errors.add(:solution_due, 'should be in the future') if solution_due.nil? || solution_due < created_at
+    end
     errors.add(:feedback_due, 'should be after due date of solution') if feedback_due.nil? || feedback_due < solution_due
   end
   
