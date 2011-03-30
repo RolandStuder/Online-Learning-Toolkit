@@ -5,12 +5,13 @@ body {
 }
 
 .container {
-	width: 900px;
-	margin-left: 50px;
+	width: 90%;
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
 	margin-top: 0px;
 	margin-bottom: 100px;
 	padding: 30px;
-
 
     	  box-shadow: 3px 3px 10px #666; 
      -moz-box-shadow: 3px 3px 10px #666; 
