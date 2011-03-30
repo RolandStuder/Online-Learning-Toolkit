@@ -22,6 +22,7 @@
 
 <p>Your feedback is due until <%= @peer_review.feedback_due.to_s(:long) %>.</p>
 
-<p>Submit your solution here: </p>
-<h2><%= peer_review_assignment_url(@assignment) %></h2>
+<p>Submit your feedback here: </p>
+<a href="<%= peer_review_assignment_url(@assignment) %>">
+	<%= peer_review_assignment_url(@assignment) %></a>
 </body></html>
