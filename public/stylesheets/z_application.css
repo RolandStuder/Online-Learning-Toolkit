@@ -1,10 +1,20 @@
 body {
 	font-family: Verdana, sans-serif;
+	margin-top: 0px;
+	
 }
 
 .container {
 	width: 900px;
 	margin-left: 50px;
+	margin-top: 0px;
+	padding: 30px;
+
+
+    	  box-shadow: 3px 3px 10px #666; 
+     -moz-box-shadow: 3px 3px 10px #666; 
+  -webkit-box-shadow: 3px 3px 10px #666; 
+
 }
 
 a {
