@@ -51,9 +51,6 @@ section {
 	display: block;
 }
 
-.done, .inactive {
-	opacity: 0.5;
-}
 
 ol.task {
 	list-style: none;
@@ -64,6 +61,7 @@ ol.task {
 	padding: 10px;
 	margin-top: 30px;
 	margin-bottom: 30px;
+	border: 1px solid;
 	
 	   -moz-border-radius: 12px; 
 	-webkit-border-radius: 12px; 
@@ -76,8 +74,37 @@ ol.task {
 	padding-top: 0px;
 }
 
+.inactive {
+	background:#D8D8D8; color: #767676; border-color: #A5A5A5;
+}
+
+.current {
+/*	background:#fff6bf;color:#514721;border-color:#ffd324;
+*/
+	background:#FFBD56; color:#000; border-color: #FF6300;
+}
+
+.current h2:before {
+	content: "next: ";
+	font-size: 50px;
+}
+
+.inactive h2:before {
+	content: "coming: ";
+	font-size: 50px;
+}
+
+
 .done {
-	background-color: #DEFFAC;
+	background:#e6efc2;color:#264409;border-color:#c6d880;
+}
+
+.done h2:before {
+	content: "✓";
+	float: left;
+	font-size: 100px;
+	margin-top: -40px;
+	padding-top: 0px;
 }
 
 .failed {
@@ -96,3 +123,18 @@ ol.task {
 .ok:before {
 	content: "✓";
 }
+
+hr {
+	border: 0px;
+	background-color: #aaa;
+	height: 1px;
+}
+
+.error, .alert {background:#fbe3e4;color:#8a1f11;border-color:#fbc2c4;}
+.notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
+.success {background:#e6efc2;color:#264409;border-color:#c6d880;}
+.info {background:#d5edf8;color:#205791;border-color:#92cae4;}
+.error a, .alert a {color:#8a1f11;}
+.notice a {color:#514721;}
+.success a {color:#264409;}
+.info a {color:#205791;}

@@ -3,7 +3,7 @@ class PeerReviewsController < ApplicationController
   # GET /peer_reviews.xml
   
   before_filter :authorize, :only => :index
-  before_filter :is_owner?, :only => [:show, :edit]
+  # before_filter :is_owner?, :only => [:show, :edit]
   
   def index
     @peer_reviews = PeerReview.all

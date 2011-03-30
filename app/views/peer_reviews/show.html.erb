@@ -52,28 +52,4 @@
 
 <% end %>
 
-<% if session[:super_user] %>
-	<%= form_for  @peer_review do |f| %>
-	    <% if @peer_review.errors.any? %>  
-		    <div id="errorExplanation">  
-		      <h2><%= pluralize(@peer_review.errors.count, "error") %></h2>  
-		      <ul>  
-		      <% @peer_review.errors.full_messages.each do |msg| %>  
-		        <li><%= msg %></li>  
-		      <% end %>  
-		      </ul>  
-		    </div>  
-	    <% end %>		
-
-		<%= f.check_box :reviewing %>
-
-		<%= f.submit "Save and continue", :class => "primary-button breathe"%>
-		<span>or</span> 
-		<%= link_to 'Reset', new_peer_review_path %>
-
-
-
-	<% end %>
-	
-<% end %>
 

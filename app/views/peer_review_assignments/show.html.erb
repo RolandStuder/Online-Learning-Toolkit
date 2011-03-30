@@ -1,3 +1,9 @@
+<script type="text/javascript">
+	Effect.SlideDown('solution');
+</script>
+
+
+
 <h1><%= @peer_review.title %></h1>
 
 
@@ -14,22 +20,27 @@
 	
 <% elsif @solution_none %>
 	<div class="current">
-		<h2>1 Submit a solution</h2>
+		<h2>Submit a solution</h2>
 		<p><%= link_to 'Submit solution', '/peer_review_assignments/' +  params[:id] + '/peer_review_solutions/new', :class => "primary-button small" %></p>
 	</div>
 <% elsif @feedback_started %>
 		<div class="done">
-			<h2>1 Submit a solution</h2>
-			<h3>Your solution</h3>
-			<%= simple_format h(truncate(@solution.text, :length => 200)) %>
-			<%= link_to "Show complete solution", "/peer_review_assignments/" + @assignment.id.to_s + "/peer_review_solutions/" + @solution.id.to_s + "/" %>
+			<h2>Submit a solution</h2>
+				<div>
+					<h3 id="solution-trigger"><a href="" onclick="new Effect.SlideDown('solution'); new Effect.SlideUp('solution-trigger'); return false;">Show your solution</a></h3>
+					<div id="solution" style="display: none">
+						<%= simple_format h(@solution.text) %>
+					</div>
+				</div>
 		</div>
 <% elsif @solution_present %>
 	<div class="done">
-		<h2>1 Submit a solution</h2>
-		<h3>Your solution</h3>
-		<%= simple_format h(truncate(@solution.text, :length => 200)) %>
-		<%= link_to "edit", "/peer_review_assignments/" + @assignment.id.to_s + "/peer_review_solutions/" + @solution.id.to_s + "/edit" %>
+		<h2>Submit a solution</h2>
+		<div id="solution">
+				<h3><a href="" onclick="new Effect.Shake('solution'); return false;">Your solution</a></h3>
+				<%= simple_format h(truncate(@solution.text, :length => 200)) %>
+				<%= link_to "edit", "/peer_review_assignments/" + @assignment.id.to_s + "/peer_review_solutions/" + @solution.id.to_s + "/edit" %>
+			</div>
 	</div>
 <% end %>
 
@@ -37,12 +48,12 @@
 	
 <% if @feedback_started == false %>
 	<div class="inactive">
-		<h2>2 Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
+		<h2>Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
 		<p>Wait for feedback assignment (<%= @peer_review.solution_due(:long) %>)
 	</div>
 <% elsif @feedback_done %>
 		<div class="done">
-			<h2>2 Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
+			<h2>Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
 			<% @feedbacks.each_with_index do |feedback, index| %>
 				<div>			
 					<%= index+1 %> Feedbacks given <%= link_to "show", peer_review_feedback_path(feedback) %>
@@ -51,7 +62,7 @@
 		</div>
 <% elsif @feedback_needed %>
 	<div class="current">
-		<h2>2 Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
+		<h2>Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
 		<% @feedbacks.each_with_index do |feedback, index| %>
 			<div>			
 				<% if feedback.text.nil? %>
@@ -68,11 +79,11 @@
 
 <% if @peer_review.reviewing == false %>
 	<div class="inactive">
-		<h2>3 Read feedback you got from your peers</h2>
+		<h2>Read feedback you got from your peers</h2>
 	</div>
 <% elsif @feedback_received %>
 	<div class="current">
-		<h2>3 Read feedback you got from your peers</h2>
+		<h2>Read feedback you got from your peers</h2>
 		<% @received_feedbacks.each do |r|%>
 			<div class="border-top">
 				<%= simple_format h(r.text) %>
@@ -81,7 +92,7 @@
 	</div>
 <% else %>
 <div class="inactive">
-	<h2>3 Read feedback you got from your peers</h2>
+	<h2>Read feedback you got from your peers</h2>
 	<p>Wait for feedback from others</p>
 </div>
 <% end %>
