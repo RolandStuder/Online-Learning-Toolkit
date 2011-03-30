@@ -1,20 +1,21 @@
 body {
 	font-family: Verdana, sans-serif;
 	margin-top: 0px;
-	
+	background-color: #f8fcfc;
 }
 
 .container {
 	width: 900px;
 	margin-left: 50px;
 	margin-top: 0px;
+	margin-bottom: 100px;
 	padding: 30px;
 
 
     	  box-shadow: 3px 3px 10px #666; 
      -moz-box-shadow: 3px 3px 10px #666; 
   -webkit-box-shadow: 3px 3px 10px #666; 
-
+	background-color: white;
 }
 
 a {
@@ -42,10 +43,16 @@ fieldset {
 	margin-top: 30px;
 	margin-bottom: 30px;
 	background-color: #eee;
+	border: none;
+}
+
+fieldset legend {
+	font-size: 1.2em;
 }
 
 textarea {
 	width: 100%;
+	font-size: 12pxconten;
 }
 
 input {
@@ -78,6 +85,10 @@ ol.task {
 	
 }
 
+p, li {
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
 .done h2, .inactive h2, .current h2 {
 	margin-top: 0px;
 	padding-top: 0px;

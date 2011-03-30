@@ -22,9 +22,9 @@
 	<fieldset>
 		<legend>Task</legend>
 
-		<%= f.label "Task instructions" %>
+		<%= f.label "instructions" %>
 		<p>Participants will receive these instructions by email.</p>
-		<%= f.text_area :task %>
+		<%= f.text_area :task, :class => "mceEditor" %>
 	
 		<label>Solutions are due until</label>
 			<%= f.datetime_select :solution_due, :minute_step => 15  %>
@@ -33,9 +33,9 @@
 	<fieldset>
 		<legend>Feedback</legend>
 
-		<%= f.label :feedback_instructions %>
+		<%= f.label "instructions" %>
 		<p>Participants will be shown these instructions, when asked to review others submissions. (Feedback is anonmyous)</p>
-		<%= f.text_area :feedback_instructions, :value => @default_feedback_text %>
+		<%= f.text_area :feedback_instructions, :value => @default_feedback_text, :class => "mceEditor" %>
 
 		<%= f.label "Number of feedbacks"%>
 		<p><%= f.select :number_of_feedbacks, [1,2,3,4,5] %>

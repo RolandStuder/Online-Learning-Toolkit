@@ -6,12 +6,12 @@ You set up a new peer review:
 Task:
 -----
 
-<%= @peer_review.task %>
+<%= strip_tags(@peer_review.task) %>
 
 Feedback:
 ---------
 
-<%= @peer_review.feedback_instructions %>
+<%= strip_tags(@peer_review.feedback_instructions) %>
 
 Solution due: <%= @peer_review.solution_due.to_s(:long) %>
 Feedback due: <%= @peer_review.feedback_due.to_s(:long) %>

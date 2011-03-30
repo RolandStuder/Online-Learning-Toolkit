@@ -13,7 +13,7 @@
 
   <div class="field">
     <h2><%= f.label "Your feedback for this solution" %></h2>
-    <%= f.text_area :text %>
+    <%= f.text_area :text, :class => "mceEditor" %>
   </div>
   <div class="actions">
     <%= f.submit "Save Feedback", :class => "primary-button breathe" %>

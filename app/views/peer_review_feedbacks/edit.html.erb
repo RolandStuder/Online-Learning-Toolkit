@@ -2,7 +2,7 @@
 
 <h2>Solution for task:<br><%= @peer_review.title %></h2>
 
-<%= simple_format h(@solution.text)%>
+<%= render :inline => @solution.text %>
 <%= render 'form' %>
 
 <%= link_to 'Back', peer_review_assignment_path(@assignment) %>

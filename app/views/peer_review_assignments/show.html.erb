@@ -1,15 +1,6 @@
-<script type="text/javascript">
-	Effect.SlideDown('solution');
-</script>
-
-
-
 <h1><%= @peer_review.title %></h1>
 
 
-<% unless notice.nil? %>
-	<p class="notice"><%= notice %></p>
-<% end %>
 
 <!-- SUBMIT SOLUTION -->
 
@@ -26,19 +17,16 @@
 <% elsif @feedback_started %>
 		<div class="done">
 			<h2>Submit a solution</h2>
+
 				<div>
-					<h3 id="solution-trigger"><a href="" onclick="new Effect.SlideDown('solution'); new Effect.SlideUp('solution-trigger'); return false;">Show your solution</a></h3>
-					<div id="solution" style="display: none">
-						<%= simple_format h(@solution.text) %>
-					</div>
+							<%= render :inline => @solution.text %>
 				</div>
 		</div>
 <% elsif @solution_present %>
 	<div class="done">
 		<h2>Submit a solution</h2>
 		<div id="solution">
-				<h3><a href="" onclick="new Effect.Shake('solution'); return false;">Your solution</a></h3>
-				<%= simple_format h(truncate(@solution.text, :length => 200)) %>
+				<%= @solution.text %>
 				<%= link_to "edit", "/peer_review_assignments/" + @assignment.id.to_s + "/peer_review_solutions/" + @solution.id.to_s + "/edit" %>
 			</div>
 	</div>
@@ -86,7 +74,7 @@
 		<h2>Read feedback you got from your peers</h2>
 		<% @received_feedbacks.each do |r|%>
 			<div class="border-top">
-				<%= simple_format h(r.text) %>
+				<%= render :inline => r.text %>
 			</div>
 		<% end%>
 	</div>

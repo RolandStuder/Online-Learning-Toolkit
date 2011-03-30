@@ -5,7 +5,7 @@
 
 <h2>Feedback instructions</h2>
 
-<p><%= simple_format(@peer_review.feedback_instructions) %></p>
+<p><%= render :inline => @peer_review.feedback_instructions %></p>
 
 <%= render 'form' %>
 

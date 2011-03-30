@@ -2,9 +2,12 @@
 <html>
 <head>
   <title>Peer Review</title>
+	<%= include_tiny_mce_if_needed %>
+
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :all %>
   <%= csrf_meta_tag %>
+ 
 
 	<script type="text/javascript"> var uservoiceOptions = {   /* required */   key: 'olt',   host: 'olt.uservoice.com',    forum: '109439',   showTab: true,     /* optional */   alignment: 'left',   background_color:'#f00',    text_color: 'white',   hover_color: '#06C',   lang: 'en' };  function _loadUserVoice() {   var s = document.createElement('script');   s.setAttribute('type', 'text/javascript');   s.setAttribute('src', ("https:" == document.location.protocol ? "https://" : "http://") + "cdn.uservoice.com/javascripts/widgets/tab.js");   document.getElementsByTagName('head')[0].appendChild(s); } _loadSuper = window.onload; window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); }; </script>
 </head>
@@ -19,8 +22,8 @@
 	<% end %>
 </div> -->
 	
-	<% flash_messages %>
-	
+<% flash_messages %>
+
 	
 <%= yield %>
 

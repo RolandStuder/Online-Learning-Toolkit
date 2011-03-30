@@ -4,7 +4,7 @@ Please provide feedback for the task:
 
 Instructions for feedback:
 
-<%= @peer_review.feedback_instructions %>
+<%= strip_tags(@peer_review.feedback_instructions) %>
 
 Your feedback is due until <%= @peer_review.feedback_due.to_s(:long) %>.
 

@@ -1,10 +1,10 @@
 <section class="task">
 	<h2>Task instructions</h2>
-	<%= simple_format(auto_link(@peer_review.task)) %>
+	<%= render :inline => @peer_review.task %>
 	
 	<h2>Feeback instructions</h2>
 	
-	<%=simple_format(auto_link(@peer_review.feedback_instructions)) %>
+	<%= render :inline => @peer_review.feedback_instructions %>
 	
 	<h2>Dates and more…</h2>
 	<p class="declare"><span>Solution due:</span> <%= @peer_review.solution_due.to_s(:long) %></p>

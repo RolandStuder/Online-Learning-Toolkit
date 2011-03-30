@@ -2,11 +2,11 @@
 
 <h2>Solution</h2>
 <p>
-  <%= simple_format h(@solution.text) %>
+  <%= render :inline => @solution.text %>
 </p>
 <h2>Feedback</h2>
 <p>
-  <%= simple_format h(@peer_review_feedback.text) %>
+  <%= render :inline => @peer_review_feedback.text %>
 </p>
 
 

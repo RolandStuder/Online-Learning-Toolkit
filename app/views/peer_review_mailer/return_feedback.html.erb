@@ -18,13 +18,13 @@
 
 <h2>Your solution:</h2>
 
-<%= simple_format(@solution.text) %>
+<%= render :inline => @solution.text %>
 
 <hr />
 
 <h2>Feedback for your solution:</h2>
 
 <% @feedbacks.each do |feedback| %>
-	<%= simple_format(feedback.text) %>
+	<%= render :inline feedback.text %>
 	<hr />
 <% end %>

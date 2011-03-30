@@ -5,6 +5,7 @@ gem 'exception_notification_rails3', :require => 'exception_notifier'
 gem 'whenever', :require => false
 gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
 gem "rails3-generators"
+gem 'tiny_mce'
 
 
 # Bundle edge Rails instead:

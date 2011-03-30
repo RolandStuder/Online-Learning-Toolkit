@@ -4,7 +4,7 @@
 
 Please follow these instructions:
 
-<%= @peer_review.task %>
+<%= strip_tags(@peer_review.task) %>
 
 Your solution is due until <%= @peer_review.solution_due(:long) %>.
 

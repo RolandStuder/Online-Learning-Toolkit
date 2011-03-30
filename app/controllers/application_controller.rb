@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   before_filter :get_session
   before_filter :authorize, :only => :destroy
   
+  uses_tiny_mce
+  
   
   
   def get_session
