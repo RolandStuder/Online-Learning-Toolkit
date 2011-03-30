@@ -51,7 +51,7 @@
 		<h2>Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
 		<p>Wait for feedback assignment (<%= @peer_review.solution_due(:long) %>)
 	</div>
-<% elsif @feedback_done %>
+<% elsif @feedback_given %>
 		<div class="done">
 			<h2>Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
 			<% @feedbacks.each_with_index do |feedback, index| %>
@@ -82,7 +82,7 @@
 		<h2>Read feedback you got from your peers</h2>
 	</div>
 <% elsif @feedback_received %>
-	<div class="current">
+	<div class="done">
 		<h2>Read feedback you got from your peers</h2>
 		<% @received_feedbacks.each do |r|%>
 			<div class="border-top">

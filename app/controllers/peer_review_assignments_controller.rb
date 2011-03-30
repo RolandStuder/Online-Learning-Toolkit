@@ -21,9 +21,12 @@ class PeerReviewAssignmentsController < ApplicationController
     
     @feedback_started = false
     @feedback_needed = false
-    @feedback_done = false
-    
+    @feedback_given = false
+        
     @feedback_received = false
+    
+    @feedback_started = true   if @peer_review.reviewing?
+    
 
     if @solution = @assignment.peer_review_solutions.first
       @solution_none = false
@@ -36,23 +39,27 @@ class PeerReviewAssignmentsController < ApplicationController
         @received_count += 1 unless f.text.nil?
       end
       
-      @feedback_received = true if @received_count == @peer_review.number_of_feedbacks
+      @given_count = 0
+      @feedbacks.each do |feedback|
+        @given_count += 1 unless feedback.text.nil? 
+      end
+      
+      
+      @feedback_needed = true    if @given_count < @peer_review.number_of_feedbacks
+      @feedback_given = true     if @given_count == @peer_review.number_of_feedbacks      
+      
+      if @feedback_given == true
+        @feedback_received = true if @received_count == @peer_review.number_of_feedbacks
+      end
       
     elsif @peer_review.reviewing?
       @solution_late = true
     end
     
     # feedbackcount
-    @feedback_count = 0
-    @feedbacks.each do |feedback|
-      @feedback_count += 1 unless feedback.text.nil? 
-    end
     
     
     
-    @feedback_started = true   if @peer_review.reviewing?
-    @feedback_needed = true    if @feedback_count < @peer_review.number_of_feedbacks
-    @feedback_done = true      if @feedback_count == @peer_review.number_of_feedbacks      
     
   end
   

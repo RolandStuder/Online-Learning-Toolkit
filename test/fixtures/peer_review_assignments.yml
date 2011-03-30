@@ -1,11 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  role: MyString
-  peer_review: 
-  user: 
+  peer_review: one
+  user: one
+  admin: true
+  participant: true
 
 two:
-  role: MyString
-  peer_review: 
-  user: 
+  peer_review: one
+  user: two
+  participant: true
+

@@ -1,16 +1,12 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  title: Fallstudie
-  task: Ursprünglich wurden angehenden Juristen ein tatsächlicher oder ein fingierter „Fall“ vorgeleg
+  title: Test-Exercise zum checken ob feedback_verteilung richtig ausgelöst wird. 
+  task: Ursprünglich wurden angehenden Juristen ein tatsächlicher oder ein fingierter „Fall“ vorgelegt.
   feedback_instructions: Gib Feedback
+  solution_due: <%= Time.now+10.minutes %>
   feedback_due: <%= Time.now+1.hour %>
   email: roland.studer@gmail.com
-
-two:
-  title: EDNOS
-  taskt: EDNOS Test
-  solution_due: <%= Time.now %>
-  feedback_instructions: Gib Feedback
-  feedback_due: <%= Time.now+1.hour %>
-  email: roland.studer@gmail.com
+  number_of_feedbacks: 1
+  started: true
+  reviewing: true
