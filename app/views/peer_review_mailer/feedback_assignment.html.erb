@@ -12,11 +12,10 @@
 </head>
 
 <body>
-<p>Please provide feedback for the task:</p>
+<p>Please provide feedback for the task:<br>
+	<%= @peer_review.title %></p>
 
-<h1><%= @peer_review.title %></h1>
-
-<h2>Please follow these instructions:</h2>
+<h2>Instructions for Feedback:</h2>
 
 <%= simple_format(@peer_review.feedback_instructions) %>
 

@@ -19,6 +19,7 @@ App::Application.routes.draw do
 
   resources :peer_review_assignments do
     get 'solution'
+    get 'show'
     resources :peer_review_solutions
   end
 

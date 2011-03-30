@@ -83,6 +83,7 @@ class PeerReviewFeedbacksController < ApplicationController
   # PUT /peer_review_feedbacks/1.xml
   def update
     @feedback = PeerReviewFeedback.find(params[:id])
+    @feedback.save
     @peer_review = @feedback.peer_review_assignment.peer_review
     @peer_review.check_if_feedback_is_complete
     @feedback.peer_review_solution.check_if_feedback_is_complete

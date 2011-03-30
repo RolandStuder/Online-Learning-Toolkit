@@ -138,3 +138,8 @@ hr {
 .notice a {color:#514721;}
 .success a {color:#264409;}
 .info a {color:#205791;}
+
+input.pot {
+	position: absolute;
+	left: -3000px;
+}

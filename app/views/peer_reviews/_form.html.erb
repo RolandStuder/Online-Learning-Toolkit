@@ -14,7 +14,7 @@
 	<%= f.text_field :title, :class => "big" %>
 	
 	<%= f.label "Your Email" %>
-	<p>You will receive email, that let you check up on the progress.</p>
+	<p>You will receive emails, that let you check the progress.</p>
 	<%= f.text_field :email, :class => "big" %>
 	
 	
@@ -32,20 +32,18 @@
 	
 	<fieldset>
 		<legend>Feedback</legend>
-	
-	
 
 		<%= f.label :feedback_instructions %>
 		<p>Participants will be shown these instructions, when asked to review others submissions. (Feedback is anonmyous)</p>
 		<%= f.text_area :feedback_instructions, :value => @default_feedback_text %>
 
 		<%= f.label "Number of feedbacks"%>
-		<p><%= f.select :number_of_feedbacks, [1,2,3,4,5],:selected => [3] %>
+		<p><%= f.select :number_of_feedbacks, [1,2,3,4,5] %>
 		 Define how many feedbacks each participant will give/receive.</p>
 		
 
 		<%= f.label :feedback_due, "Feedbacks are due until"%>
-		<%= f.datetime_select :feedback_due, :minute_step => 15  %>
+		<%= f.datetime_select :feedback_due, :minute_step => 60  %>
 	
 	</fieldset>
 	
