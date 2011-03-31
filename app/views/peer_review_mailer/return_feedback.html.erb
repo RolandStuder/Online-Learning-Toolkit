@@ -25,6 +25,6 @@
 <h2>Feedback for your solution:</h2>
 
 <% @feedbacks.each do |feedback| %>
-	<%= render :inline feedback.text %>
+	<%= render :inline => feedback.text %>
 	<hr />
 <% end %>

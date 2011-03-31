@@ -6,7 +6,7 @@ Here is your feedback for your solution:
 Your solution:
 ----------------------------------------
 
-<%= strip_tags(@solution) %>
+<%= strip_tags(@solution.text) %>
 
 
 Feedback for your solution:
@@ -14,6 +14,6 @@ Feedback for your solution:
 
 
 <% @feedbacks.each do |feedback| %>
-<%= strip_tags(feedback.text) %>
+	<%= strip_tags(feedback.text) %>
 ----------------------------------------
 <% end %>
