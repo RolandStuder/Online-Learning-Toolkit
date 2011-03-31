@@ -13,7 +13,7 @@
 	<%= f.label :title %>
 	<%= f.text_field :title, :class => "big" %>
 	
-	<%= f.label "Your Email" %>
+	<%= f.label :email, "Your Email" %>
 	<p>You will receive emails, that let you check the progress.</p>
 	<%= f.text_field :email, :class => "big" %>
 	
@@ -22,18 +22,18 @@
 	<fieldset>
 		<legend>Task</legend>
 
-		<%= f.label "instructions" %>
+		<%= f.label :task, "instructions" %>
 		<p>Participants will receive these instructions by email.</p>
 		<%= f.text_area :task, :class => "mceEditor" %>
 	
 		<label>Solutions are due until</label>
-			<%= f.datetime_select :solution_due, :minute_step => 15  %>
+			<%= f.datetime_select :solution_due, :minute_step => 60  %>
 	</fieldset>
 	
 	<fieldset>
 		<legend>Feedback</legend>
 
-		<%= f.label "instructions" %>
+		<%= f.label :feedback_instructions, "instructions" %>
 		<p>Participants will be shown these instructions, when asked to review others submissions. (Feedback is anonmyous)</p>
 		<%= f.text_area :feedback_instructions, :value => @default_feedback_text, :class => "mceEditor" %>
 

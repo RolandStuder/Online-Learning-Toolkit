@@ -21,7 +21,15 @@ class PeerReviewsController < ApplicationController
     @users = @peer_review.users.all(:order => "email asc")
     @assignments = @peer_review.peer_review_assignments.where(:participant => true)
     @errors = []
-
+    
+    @feedback_count = 0
+    @assignments.each do |a|
+      if a.status == 'feedback_given' || a.status == 'feedback_received'
+        @feedback_count += 1
+      end
+    end
+    
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @peer_review }
@@ -35,10 +43,6 @@ class PeerReviewsController < ApplicationController
     @peer_review.solution_due = Time.now + 7.days
     @peer_review.feedback_due = Time.now + 14.days
     
-    @default_feedback_text = 
-"- Be critical, but be fair
-- Give feedback, that helps to improve the submitted solution."
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @peer_review }
@@ -48,6 +52,7 @@ class PeerReviewsController < ApplicationController
   # GET /peer_reviews/1/edit
   def edit
     @peer_review = PeerReview.find(params[:id])
+    
   end
 
   # POST /peer_reviews
@@ -75,7 +80,7 @@ class PeerReviewsController < ApplicationController
 
     respond_to do |format|
       if @peer_review.update_attributes(params[:peer_review])
-        format.html { redirect_to(@peer_review, :notice => 'Peer review was successfully updated.') }
+        format.html { redirect_to(@peer_review, :success => 'Peer review was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -166,6 +171,7 @@ class PeerReviewsController < ApplicationController
     @peer_review.start_feedbacks
     redirect_to :action => "show", :notice => "Peer Review Feedbacks started, all participants have received an email with their assignment."    
   end
+  
   
   protected
   

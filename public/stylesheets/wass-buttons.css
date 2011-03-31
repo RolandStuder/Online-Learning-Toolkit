@@ -4,32 +4,35 @@
 	font-size: 1.5em;
 	padding: 10px;
 	margin-top: 30px;
-	margin-bottom: 30px;
+	line-height: 3em;
 	
 	
-	   -moz-border-radius: 12px; 
+/*	   -moz-border-radius: 12px; 
 	-webkit-border-radius: 12px; 
 	        border-radius: 12px; 
 	
+*/	
+	  
 	
-		  background-color: #E5E5E5;
-		  background-image: -moz-linear-gradient(top, #E5E5E5, #B2B2B2); 
-		  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #E5E5E5),color-stop(1, #B2B2B2)); 
-		  background-image: -webkit-linear-gradient(#E5E5E5, #B2B2B2); 
-		  background-image: linear-gradient(top, #E5E5E5, #B2B2B2);
-		            filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#E5E5E5', EndColorStr='#B2B2B2'); 
+		  background-color: #CED0CE;
+		  background-image: -moz-linear-gradient(top, #F3F3F3, #CED0CE); 
+		  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #F3F3F3),color-stop(1, #CED0CE)); 
+		  background-image: -webkit-linear-gradient(#F3F3F3, #CED0CE); 
+		  background-image: linear-gradient(top, #F3F3F3, #CED0CE);
+		            filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#F3F3F3', EndColorStr='#CED0CE'); 
 
 }
 
 .primary-button:hover {
-	background-color: #D5D5D5;	
-	background-image: -moz-linear-gradient(top, #D5D5D5, #8A8A8A); 
-	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #8A8A8A),color-stop(1, #8A8A8A)); 
-	background-image: -webkit-linear-gradient(#D5D5D5, #8A8A8A); 
-	background-image: linear-gradient(top, #D5D5D5, #8A8A8A);
-	            filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#D5D5D5', EndColorStr='#8A8A8A'); 
+	background-color: #E0E3E0;	
+    background-image: -moz-linear-gradient(top, #E0E3E0, #CED0CE); 
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #E0E3E0),color-stop(1, #CED0CE)); 
+	background-image: -webkit-linear-gradient(#E0E3E0, #CED0CE); 
+	background-image: linear-gradient(top, #E0E3E0, #CED0CE);
+	            filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#E0E3E0', EndColorStr='#CED0CE'); 
 	
 	
 }
+
 
 

@@ -27,7 +27,11 @@ a {
 a:hover {
 }
 
-h1, h2, h3 {
+h1 {
+	padding-top: 30px;
+}
+
+h2, h3 {
 	padding-top: 20px;
 }
 
@@ -37,23 +41,25 @@ label, legend {
 }
 
 label {
-	padding-top: 10px;
+	padding-top: 30px;
 }
 
 fieldset {
-	margin-top: 30px;
+	margin-top: 50px;
 	margin-bottom: 30px;
-	background-color: #eee;
-	border: none;
+/*	background-color: #eee;
+*/	border: none;
+	border-top: 3px solid #ccc;
 }
 
 fieldset legend {
 	font-size: 1.2em;
+	margin-left: -14px;
 }
 
 textarea {
 	width: 100%;
-	font-size: 12pxconten;
+	font-size: 12px;
 }
 
 input {
@@ -80,10 +86,10 @@ ol.task {
 	margin-bottom: 30px;
 	border: 1px solid;
 	
-	   -moz-border-radius: 12px; 
+/*	   -moz-border-radius: 12px; 
 	-webkit-border-radius: 12px; 
 	        border-radius: 12px; 
-	
+*/	
 }
 
 p, li {
@@ -96,13 +102,16 @@ p, li {
 }
 
 .inactive {
-	background:#D8D8D8; color: #767676; border-color: #A5A5A5;
+	background:#ddd; color: #aaa; border-color: #ccc;
 }
 
 .current {
 /*	background:#fff6bf;color:#514721;border-color:#ffd324;
 */
-	background:#FFBD56; color:#000; border-color: #FF6300;
+background:#FFBD67; color:#000; border-color: #FF6300;
+background: white;
+color: black;
+border-color: white;
 }
 
 .current h2:before {
@@ -117,7 +126,11 @@ p, li {
 
 
 .done {
-	background:#e6efc2;color:#264409;border-color:#c6d880;
+/*	background:#e6efc2;color:#264409;border-color:#c6d880;
+*/	
+	background:#F3F7E1;
+	color:#264409;
+	border-color:#F2F4E8;
 }
 
 .done h2:before {
@@ -155,12 +168,66 @@ hr {
 .notice {background:#fff6bf;color:#514721;border-color:#ffd324;}
 .success {background:#e6efc2;color:#264409;border-color:#c6d880;}
 .info {background:#d5edf8;color:#205791;border-color:#92cae4;}
+div.warning {background:#FFC66A;color:#8D2B05;border-color:#FF8F3A;}
+
 .error a, .alert a {color:#8a1f11;}
 .notice a {color:#514721;}
 .success a {color:#264409;}
 .info a {color:#205791;}
 
+div.warning {
+	border: 1px solid #FF8F3A;
+	padding: 10px;
+}
+
 input.pot {
 	position: absolute;
 	left: -3000px;
+}
+
+div.field_with_errors label {
+	color: #8a1f11;
+}
+
+div.field_with_errors input,
+div.field_with_errors textarea,
+div.field_with_errors td.mceIframeContainer {
+	border: 3px solid #8a1f11 !important;
+}
+
+table {
+	border-spacing: 0px;
+}
+
+th {
+	text-align: left;
+}
+
+td {
+	padding-top: 3px;
+}
+
+.quiet {
+	opacity: 0.5;
+}
+
+li.active {
+}
+
+div.info h2 {
+	font-weight: normal;
+	margin: 0px 0px 0px 0px;
+}
+
+.action {
+	font-weight: bold;
+	padding: 5px;
+}
+
+.x {
+	color: red;
+}
+
+.x:before {
+	content: "✗";
 }

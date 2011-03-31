@@ -1,21 +1,35 @@
 <fieldset>
-	<legend><%= @users.length %> Participants</legend>
+	<legend><%= @assignments.count %> Participants</legend>
 
 <section class="participants">
 	<table>
 		<tr>
 			<th></th>
 			<th></th>
-			<th>Solution</th>
-			<th>Feedbacks</th>
+			<th class="border-right padded">
+				<h3>Solutions</h3>
+				<p> <%= @peer_review.peer_review_solutions.count %> of <%= @assignments.count %> submitted</p>
+			</th>
+			<th class="border-right padded">
+				<h3>Feedbacks</h3>
+				<p> <%= @feedback_count %> of <%= @assignments.count %> submitted</p>
+			</th>
+			<p>
 		</tr>
 
 	<% @assignments.each do |a| %>
 		<tr class="<%= cycle("even", "odd") -%>">
-			<td><%= link_to a.id, a %></td>
+			<td><% if Rails.env.development? %><%= link_to a.id, a %><% end %></td>
 			<td><%= a.user.email %></td>
-			<td><% if a.peer_review_solutions.first %><span class="ok" /><% end %></td>
-			<td><% a.peer_review_feedbacks.each do |f| %><% unless f.text.nil? %><span class="ok"></span><% end %><% end %></td>
+			<td class="border-right padded-left"><% if a.peer_review_solutions.first %><span class="ok" /><% elsif @peer_review.reviewing == true %><span class="x" /><% end %></td>
+			<td class="border-right padded-left">
+				<% a.peer_review_feedbacks.each do |f| %>
+					<% if f.text.nil? == false %>
+						<span class="ok"></span>
+					<% elsif  @peer_review.finished == true %>
+						<span class="x" />
+					<% end %>
+				<% end %></td>
 		</tr>
 	<% end %>
 	</table>

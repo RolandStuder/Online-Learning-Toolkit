@@ -2,13 +2,43 @@
 
 
 <% if @peer_review.finished? %>
-	<p class="notice">This peer review exercise is fully completed.</p>
+<div class="info"><ol>
+	<li class="quiet">Participants have submitted their solutions.<br>
+		<%= @peer_review.peer_review_solutions.count %> of <%= @assignments.count %> submitted</li>
+	<li class="quiet">Participants have given each other feedback<br>
+		<%= @feedback_count %> of <%= @peer_review.peer_review_solutions.count %> submitted</li>
+	<li class="active"><h2>Exercise is finished</h2>
+		<%= link_to "Show all contributions", "/peer_reviews/#{@peer_review.id}/peer_review_assignments", :class => "primary-button" %>
+	</li>
+</ol></div>
 
 <% elsif @peer_review.reviewing? %>
-	<p class="notice">Peers are now giving each other feedback.</p>
+<div class="info"><ol>
+	<li class="quiet">Participants have submitted their solutions.<br>
+		<%= @peer_review.peer_review_solutions.count %> of <%= @assignments.count %> submitted</li>
+	<li class="active"><h2>Participants are <b>giving</b> each other <b>feedback</b>.</h2>
+		<%= @feedback_count %> of <%= @peer_review.peer_review_solutions.count %> submitted</li>
+	<li class="quiet">Exercise will be finished</li>
+</ol></div>
+
 
 <% elsif @peer_review.started? %>
-	<p class="notice">The peer review is now running an cannot be edited anymore.</p>
+	<div class="info">
+		<ol>
+			<li class="active"><h2>Participants are now <b>submitting</b> their <b>solutions</b>.</h2>
+				<%= @peer_review.peer_review_solutions.count %> of <%= @assignments.count %> submitted</li>
+			<li class="quiet">Participants will give each other feedback</li>
+			<li class="quiet">Exercise will be finished</li>
+		</ol>
+	</div>
+<% elsif %>
+	<div class="warning">
+		Your exercise has not been started yet.
+		<%= form_for :peer_review, @peer_review, :url => {:action => 'start'} do %>
+			<%= submit_tag ("Start exercise now"), :class => "primary-button", :confirm => "Are you sure you want to start the exercise?
+			You have assigned #{@peer_review.participants.count} participants" %>
+		<% end %>
+	</div>
 <% end %>
 
 
@@ -23,31 +53,34 @@
 
 <fieldset>
 <legend>Your Settings</legend>
+
+<p><%= link_to 'Edit settings', edit_peer_review_path(@peer_review), :class => "action" unless @peer_review.started? %>
+</p>
 <%= render 'peer_review' %>
-<%= link_to 'Edit Peer Review', edit_peer_review_path(@peer_review) unless @peer_review.started? %>
 
 </fieldset>
 
 
 <%= render 'participants' %>
 <br />
-<%= link_to '+ Assign more participants', assign_peer_review_path(@peer_review) unless @peer_review.started? %>
+<%= link_to '+ Assign more participants', assign_peer_review_path(@peer_review), :class => "action" unless @peer_review.started? %>
 
 <section class="breathe">
 	<%= form_for :peer_review, @peer_review, :url => {:action => 'start'} do %>
-		<%= submit_tag ("Confirm and start peer Review"), :class => "primary-button breathe" unless @peer_review.started? %>
+		<%= submit_tag ("Start exercise now"), :class => "primary-button breathe", :confirm => "Are you sure you want to start the exercise?
+		You have assigned #{@peer_review.participants.count} participants" unless @peer_review.started? %>
 	<% end %>
 </section>
 
 <section class="breathe">
 	<% if @peer_review.started? %>
-		<%= link_to "Show all contributions", "/peer_reviews/#{@peer_review.id}/peer_review_assignments", :class => "primary-button" %>
+		<%= link_to "Show all contributions", "/peer_reviews/#{@peer_review.id}/peer_review_assignments", :class => "action" %>
 	<% end%>
 </section>
 
 <% if @peer_review.started && @peer_review.reviewing == false %>
 <section class="breathe">
-		<%= link_to "Start Peer Feedback Now", "/peer_reviews/#{@peer_review.id}/start_feedbacks_manually", :class => "primary-button" %>
+		<%= link_to "Start peer feedbacks now", "/peer_reviews/#{@peer_review.id}/start_feedbacks_manually", :class => "primary-button", :confirm => "Warning: If your start peer feedback now, user will not be able to add any solutions anymore" %>
 </section>
 
 <% end %>

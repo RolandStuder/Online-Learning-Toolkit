@@ -26,7 +26,7 @@
 	<div class="done">
 		<h2>Submit a solution</h2>
 		<div id="solution">
-				<%= @solution.text %>
+				<%= render :inline => @solution.text %>
 				<%= link_to "edit", "/peer_review_assignments/" + @assignment.id.to_s + "/peer_review_solutions/" + @solution.id.to_s + "/edit" %>
 			</div>
 	</div>
@@ -54,7 +54,7 @@
 		<% @feedbacks.each_with_index do |feedback, index| %>
 			<div>			
 				<% if feedback.text.nil? %>
-					<%= link_to "Give Feedback #{index+1}", edit_peer_review_feedback_path(feedback), :class => "primary-button block" %>
+					<%= link_to "Give Feedback #{index+1}", edit_peer_review_feedback_path(feedback), :class => "primary-button" %><br>
 				<% else %>
 				<%= index+1 %> Feedbacks given <%= link_to "show", peer_review_feedback_path(feedback) %>
 				<% end %>

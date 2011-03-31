@@ -56,7 +56,6 @@ class PeerReviewAssignmentsController < ApplicationController
       @solution_late = true
     end
     
-    # feedbackcount
     
     
     
