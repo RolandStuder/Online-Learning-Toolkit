@@ -85,6 +85,7 @@ ol.task {
 	margin-top: 30px;
 	margin-bottom: 30px;
 	border: 1px solid;
+	overflow: hidden;
 	
 /*	   -moz-border-radius: 12px; 
 	-webkit-border-radius: 12px; 
@@ -230,4 +231,52 @@ div.info h2 {
 
 .x:before {
 	content: "✗";
+}
+
+div.solution, div.feedback {
+	float: left;
+}
+
+div.feedback-counter {
+	font-weight: bold;
+	font-size: 1.5em;
+	padding-top: 50px;
+}
+
+div.contributions {
+	background-color: white;
+	clear: both;
+
+}
+
+div.contributions h2 {
+	background-color: #aaa;
+	color: white;
+	padding: 10px;
+	padding-left: 30px;
+	clear: both;
+	margin-left: -30px;
+	margin-right: -30px;
+	margin-top: 50px;
+}
+
+div.contributions h3 {
+	background-color: white;
+	color: #999;
+	margin-bottom: 15px;
+	
+}
+
+div.contributions div.user {
+	float: left;
+	width: 20%;
+	background-color: white;
+	font-weight: bold;
+}
+
+div.contributions div.feedback {
+	float: right;
+	background-color: white;
+	width: 75%;
+	margin-bottom: 30px;
 }

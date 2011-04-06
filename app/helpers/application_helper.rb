@@ -7,4 +7,8 @@ module ApplicationHelper
       end
   end
   
+  def sanitize_input
+    
+  end
+  
 end

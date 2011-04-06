@@ -1,7 +1,5 @@
 <h1><%= @peer_review.title %></h1>
 
-
-
 <!-- SUBMIT SOLUTION -->
 
 <% if @solution_late %>
@@ -42,24 +40,26 @@
 <% elsif @feedback_given %>
 		<div class="done">
 			<h2>Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
+			<div class="feedback">			
 			<% @feedbacks.each_with_index do |feedback, index| %>
-				<div>			
 					<%= index+1 %> Feedbacks given <%= link_to "show", peer_review_feedback_path(feedback) %>
-				</div>
 			<% end %>
+			</div>
+			
 		</div>
 <% elsif @feedback_needed %>
 	<div class="current">
 		<h2>Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
-		<% @feedbacks.each_with_index do |feedback, index| %>
-			<div>			
+		<div class="feedback">			
+			<% @feedbacks.each_with_index do |feedback, index| %>
 				<% if feedback.text.nil? %>
 					<%= link_to "Give Feedback #{index+1}", edit_peer_review_feedback_path(feedback), :class => "primary-button" %><br>
 				<% else %>
 				<%= index+1 %> Feedbacks given <%= link_to "show", peer_review_feedback_path(feedback) %>
 				<% end %>
-			</div>
 		<% end %>
+		</div>
+		
 	</div>
 <% end %>	
 
@@ -72,11 +72,13 @@
 <% elsif @feedback_received %>
 	<div class="done">
 		<h2>Read feedback you got from your peers</h2>
-		<% @received_feedbacks.each do |r|%>
-			<div class="border-top">
-				<%= render :inline => r.text %>
-			</div>
+			<div class="feedback">
+			<% @received_feedbacks.each_with_index do |r, index|%>
+					<div class="feedback-counter">Feedback <%= index+1 %>:</div>
+					<%= render :inline => r.text %>
+				</div>
 		<% end%>
+		</div>
 	</div>
 <% else %>
 <div class="inactive">

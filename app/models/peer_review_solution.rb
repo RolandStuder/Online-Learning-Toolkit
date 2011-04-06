@@ -6,6 +6,9 @@ class PeerReviewSolution < ActiveRecord::Base
   
   validates_presence_of :peer_review_assignment, :text
   
+  include ActionView::Helpers::SanitizeHelper
+  before_save :sanitize_entry
+  
   def return_feedback
     self.feedback_returned = true
     self.save
@@ -19,6 +22,12 @@ class PeerReviewSolution < ActiveRecord::Base
          self.return_feedback
       end
     end
+  end
+  
+  private
+  
+  def sanitize_entry
+    self.text = sanitize(self.text, :tags => %w(p strong em ul ol li div a h1 h2 h3 h4 h5 h6))
   end
   
 end

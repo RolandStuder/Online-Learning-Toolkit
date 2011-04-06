@@ -1,17 +1,26 @@
 <h1>Listing all solutions with feedbacks</h1>
 
 
+<div class="contributions">
+
 <% @assignments.each_with_index do |assignment, index| %>
-		<hr />
-    
+ 
+
 <h2><%= index+1 %> <%= assignment.user.email %></h2>
-			<% assignment.peer_review_solutions.each do |assignment| %>
-					<%= simple_format(assignment.text) %>
+
+			<% assignment.peer_review_solutions.each do |solution| %>
+					<%= render :inline => solution.text %>
+				  
 					<h3>Feedbacks</h3>
 					<% assignment.peer_review_feedbacks.each do |feedback| %>
-						<%= simple_format(feedback.text) %>
-						<p class="small quiet"><%= feedback.peer_review_assignment.user.email %></p>
+						<div class="user">
+							<%= feedback.peer_review_assignment.user.email %>
+						</div>
+						<div class="feedback">
+							<%= render :inline => feedback.text %>
+					  </div>
 					<% end%>
 			<% end%>
 		
 <% end %>
+</div>

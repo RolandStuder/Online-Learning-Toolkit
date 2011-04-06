@@ -1,9 +1,11 @@
 class PeerReviewSolutionsController < ApplicationController
   # GET /solutions
   # GET /solutions.xml
+  
+  
   def index
     @peer_review = PeerReview.find(params[:peer_review_id])
-    @solutions = @peer_review.peer_review_solutions.all
+    @solutions = @peer_review.peer_review_solutions.find(:all)
     @anonymous = params[:anonymous]
 
     respond_to do |format|
@@ -66,9 +68,10 @@ class PeerReviewSolutionsController < ApplicationController
     
     @peer_review.start_feedbacks?
     
+    
     respond_to do |format|
       if @solution.update_attributes(params[:peer_review_solution])
-        format.html { redirect_to(@assignment, :notice => 'Peer review solution was successfully updated.') }
+        format.html { redirect_to(@assignment, :notice => "sucessfully saved") }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
