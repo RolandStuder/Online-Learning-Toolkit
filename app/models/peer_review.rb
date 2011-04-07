@@ -1,6 +1,6 @@
 class PeerReview < ActiveRecord::Base
   has_many :peer_review_assignments
-  has_many :users, :through => :peer_review_assignments
+  has_many :users, :through => :peer_review_assignments, :order => "email ASC"
   has_many :peer_review_solutions, :through => :peer_review_assignments
   has_many :peer_review_feedbacks, :through => :peer_review_assignments
   
@@ -27,41 +27,42 @@ class PeerReview < ActiveRecord::Base
   
   def start_feedbacks?
     if peer_review_assignments.length == peer_review_solutions.length #start feedbacks when all solutions are in.
-      self.start_feedbacks
+      self.start_feedbacks unless self.started == false
     end
   end
   
   def start_feedbacks
-    @peer_review = PeerReview.find(id)
-    @peer_review.reviewing = true
-    @peer_review.save
-    
-    @solutions = @peer_review.peer_review_solutions.all
+    if self.started == true
+      self.reviewing = true
+      @solutions = self.peer_review_solutions.all
     
     
-    @solutions.each_with_index do |solution, i|
-      @assignment = @solutions[i].peer_review_assignment
-      @user = @assignment.user
-      PeerReviewMailer.feedback_assignment(@assignment, @peer_review, @user).deliver
+      @solutions.each_with_index do |solution, i|
+        @assignment = @solutions[i].peer_review_assignment
+        @user = @assignment.user
+        PeerReviewMailer.feedback_assignment(@assignment, self, @user).deliver
       
-      @peer_review.number_of_feedbacks.downto(1) do |n|
-        n=(i+n) % @solutions.count
-        @feedback = PeerReviewFeedback.create([:peer_review_assignment => @assignment, :peer_review_solution => @solutions[n]])
+        self.number_of_feedbacks.downto(1) do |n|
+          n=(i+n) % @solutions.count
+          @feedback = PeerReviewFeedback.create([:peer_review_assignment => @assignment, :peer_review_solution => @solutions[n]])
+        end        
       end
+      PeerReviewMailer.status(self).deliver
+      self.save
     end
-    
-    PeerReviewMailer.status(@peer_review).deliver
   end
   
   def check_if_feedback_is_complete
-    @feedbacks = self.peer_review_feedbacks.where(:text => nil)
-    unless self.finished == true
-      if @feedbacks.count <= 1 or feedback_due <= Time.now
-        PeerReviewMailer.status(self).deliver
-        self.finished = true
-        self.save
-        self.peer_review_solutions.where(:feedback_returned => false).each do |solution|
-          solution.return_feedback
+    if self.reviewing == true
+      @feedbacks = self.peer_review_feedbacks.where(:text => nil)
+      unless self.finished == true
+        if @feedbacks.count == 0 or feedback_due <= Time.now
+          PeerReviewMailer.status(self).deliver
+          self.finished = true
+          self.save
+          self.peer_review_solutions.where(:feedback_returned => false).each do |solution|
+            solution.return_feedback
+          end
         end
       end
     end
@@ -95,7 +96,6 @@ class PeerReview < ActiveRecord::Base
       end
     end
   end
-  
   
   protected 
   

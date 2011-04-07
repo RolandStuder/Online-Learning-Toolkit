@@ -18,8 +18,7 @@ class PeerReviewsController < ApplicationController
   # GET /peer_reviews/1.xml
   def show
     @peer_review = PeerReview.find(params[:id])
-    @users = @peer_review.users.all(:order => "email asc")
-    @assignments = @peer_review.peer_review_assignments.all(:conditions => {:participant => true}, :include => :user)
+    @assignments = @peer_review.peer_review_assignments.all(:conditions => {:participant => true}, :include => :user, :order => 'created_at')
     @errors = []
     
     @feedback_count = 0

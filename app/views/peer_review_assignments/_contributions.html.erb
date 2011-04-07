@@ -6,21 +6,40 @@
 <% @assignments.each_with_index do |assignment, index| %>
  
 
-<h2><%= index+1 %> <%= assignment.user.email %></h2>
 
-			<% assignment.peer_review_solutions.each do |solution| %>
-					<%= solution.text %>
-				  
-					<h3>Feedbacks</h3>
-					<% assignment.peer_review_feedbacks.each do |feedback| %>
-						<div class="user">
-							<%= feedback.peer_review_assignment.user.email %>
-						</div>
-						<div class="feedback">
-							<%= feedback.text %>
-					  </div>
-					<% end%>
-			<% end%>
+
+	<% assignment.peer_review_solutions.each do |solution| %>
+	<h2>
+		<%= index+1 %>
+		<% unless params[:anonymous]  == "true" %>
+			<%= assignment.user.email %>
+		<% end %>
+	</h2>
+	
+	<%= render :inline => solution.text unless solution.text.nil? %>
+	<% if solution.text.nil? %><span class="x" /><% end %>			  
+	<h3>Feedbacks</h3>
+		<table>
+		<% solution.peer_review_feedbacks.each do |feedback| %>
+			<tr>
+				<td class="user">
+				<% unless params[:anonymous]  == "true" %>
+					<%= feedback.peer_review_assignment.user.email %>
+				<% else %>
+					Feedback:
+				<% end %>
+				</td>
+			
+				<td class="feedback">
+				<%= render :inline => feedback.text unless feedback.text.nil? %>
+				<% if feedback.text.nil? %><span class="x" /><% end %>			  
+				
+				</td>
+			</tr>
+		<% end%>
+		<table>
+					
+	<% end%>
 		
 <% end %>
 </div>

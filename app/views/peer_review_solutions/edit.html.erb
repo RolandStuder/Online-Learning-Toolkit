@@ -1,3 +1,6 @@
+<%= link_to "back", @assignment, :class => "back" %>
+
+
 <h1>Editing your solution</h1>
 
 <%= form_for @solution do |f| %>
@@ -19,7 +22,8 @@
 
 
   <div class="actions">
-    <%= f.submit 'Save', :class => "primary-button" %>
+    <%= f.submit 'Save', :class => "primary-button" %> or  <%= link_to "go back", @assignment %>
+		
   </div>
 <% end %>
 

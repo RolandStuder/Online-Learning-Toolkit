@@ -17,7 +17,7 @@
 
 <h2>Instructions for Feedback:</h2>
 
-<%= render :inline => @peer_review.feedback_instructions %>
+<%= render :inline => @peer_review.feedback_instructions unless @peer_review.feedback_instructions.nil? %>
 
 <p>Your feedback is due until <%= @peer_review.feedback_due.to_s(:long) %>.</p>
 

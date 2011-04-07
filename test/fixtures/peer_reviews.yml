@@ -1,12 +1,41 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
+
+
 one:
-  title: Test-Exercise zum checken ob feedback_verteilung richtig ausgelöst wird. 
-  task: Ursprünglich wurden angehenden Juristen ein tatsächlicher oder ein fingierter „Fall“ vorgelegt.
-  feedback_instructions: Gib Feedback
-  solution_due: <%= Time.now+10.minutes %>
-  feedback_due: <%= Time.now+1.hour %>
+  title: (not_started) not_started should stay not_started
+  task: never
+  solution_due: <%= Time.now-2.hours %>
+  feedback_due: <%= Time.now-2.hours+1.minutes %>
+  started: false
   email: roland.studer@gmail.com
   number_of_feedbacks: 1
+
+two:
+  title: (started) started / not due, should stay started
+  task: gonna
+  solution_due: <%= Time.now-2.hours+1.days %>
+  feedback_due: <%= Time.now-2.hours+2.days %>
+  started: true
+  email: roland.studer@gmail.com
+  number_of_feedbacks: 1
+
+three: 
+  title: (reviewing) started / due, should start feedback
+  task: give
+  solution_due: <%= Time.now-2.hours %>
+  feedback_due: <%= Time.now-2.hours+1.days %>
+  started: true
+  email: roland.studer@gmail.com
+  number_of_feedbacks: 1
+
+four: 
+  title: (reviewing) reviewing / not due, should stay reviewing
+  task: give
+  solution_due: <%= Time.now-2.hours %>
+  feedback_due: <%= Time.now-2.hours+1.day %>
   started: true
   reviewing: true
+  email: roland.studer@gmail.com
+  number_of_feedbacks: 1
+

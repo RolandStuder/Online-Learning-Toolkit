@@ -10,7 +10,11 @@
 <% elsif @solution_none %>
 	<div class="current">
 		<h2>Submit a solution</h2>
+		
 		<p><%= link_to 'Submit solution', '/peer_review_assignments/' +  params[:id] + '/peer_review_solutions/new', :class => "primary-button small" %></p>
+		
+		 <b><%= distance_of_time_in_words( Time.now, @peer_review.solution_due) %>  left</b>
+		
 	</div>
 <% elsif @feedback_started %>
 		<div class="done">
@@ -25,7 +29,7 @@
 		<h2>Submit a solution</h2>
 		<div id="solution">
 				<%= render :inline => @solution.text %>
-				<%= link_to "edit", "/peer_review_assignments/" + @assignment.id.to_s + "/peer_review_solutions/" + @solution.id.to_s + "/edit" %>
+				<%= link_to "edit", "/peer_review_assignments/" + @assignment.id.to_s + "/peer_review_solutions/" + @solution.id.to_s + "/edit", :class => "button" %>
 			</div>
 	</div>
 <% end %>
@@ -35,8 +39,8 @@
 <% if @feedback_started == false %>
 	<div class="inactive">
 		<h2>Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
-		<p>Wait for feedback assignment (<%= @peer_review.solution_due(:long) %>)
-	</div>
+		<p>Feedbacks start in <b><%= distance_of_time_in_words( Time.now, @peer_review.solution_due) %></b></p>
+		</div>
 <% elsif @feedback_given %>
 		<div class="done">
 			<h2>Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
@@ -50,6 +54,8 @@
 <% elsif @feedback_needed %>
 	<div class="current">
 		<h2>Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
+		 <p><b><%= distance_of_time_in_words( Time.now, @peer_review.feedback_due) %>  left</b></p>
+		
 		<div class="feedback">			
 			<% @feedbacks.each_with_index do |feedback, index| %>
 				<% if feedback.text.nil? %>

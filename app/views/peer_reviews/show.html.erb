@@ -54,16 +54,20 @@
 <fieldset>
 <legend>Your Settings</legend>
 
-<p><%= link_to 'Edit settings', edit_peer_review_path(@peer_review), :class => "action" unless @peer_review.started? %>
+<p><%= link_to 'Edit settings', edit_peer_review_path(@peer_review), :class => "button" unless @peer_review.started? %>
 </p>
 <%= render 'peer_review' %>
 
 </fieldset>
 
+<section class="breathe">
+	<% if @peer_review.started? %>
+		<%= link_to "Show all contributions", "/peer_reviews/#{@peer_review.id}/peer_review_assignments", :class => "button" %>
+	<% end%>
+</section>
 
 <%= render 'participants' %>
 <br />
-<%= link_to '+ Assign more participants', assign_peer_review_path(@peer_review), :class => "action" unless @peer_review.started? %>
 
 <section class="breathe">
 	<%= form_for :peer_review, @peer_review, :url => {:action => 'start'} do %>
@@ -72,11 +76,6 @@
 	<% end %>
 </section>
 
-<section class="breathe">
-	<% if @peer_review.started? %>
-		<%= link_to "Show all contributions", "/peer_reviews/#{@peer_review.id}/peer_review_assignments", :class => "action" %>
-	<% end%>
-</section>
 
 <% if @peer_review.started && @peer_review.reviewing == false %>
 <section class="breathe">

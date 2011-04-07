@@ -1,13 +1,38 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  peer_review: one
+  peer_review: two
   user: one
   admin: true
   participant: true
 
 two:
-  peer_review: one
+  peer_review: two
   user: two
   participant: true
 
+3_1:
+  peer_review: three
+  user: one
+  admin: true
+  participant: true
+
+3_2:
+  peer_review: three
+  user: two
+  participant: true
+  
+3_3:
+  peer_review: three
+  user: three
+  participant: true
+  
+4_1:
+  peer_review: four
+  user: one
+  participant: true
+
+4_2:
+  peer_review: four
+  user: two
+  participant: true

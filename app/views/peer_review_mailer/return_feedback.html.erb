@@ -18,13 +18,13 @@
 
 <h2>Your solution:</h2>
 
-<%= render :inline => @solution.text %>
+<%= render :inline => @solution.text unless @solution.text.nil? %>
 
 <hr />
 
 <h2>Feedback for your solution:</h2>
 
 <% @feedbacks.each do |feedback| %>
-	<%= render :inline => feedback.text %>
+	<%= render :inline => feedback.text unless feedback.text.nil? %>
 	<hr />
 <% end %>

@@ -264,19 +264,24 @@ div.contributions h3 {
 	background-color: white;
 	color: #999;
 	margin-bottom: 15px;
+}
+
+div.contributions td {
+	border-top: 1px solid #aaa;
+	padding-bottom: 20px;
+}
+
+td.user {
+	font-weight: bold;
+	padding-right: 10px;
+}
+
+
+a.back:before {
+	content: "←";
 	
 }
 
-div.contributions div.user {
-	float: left;
-	width: 20%;
-	background-color: white;
-	font-weight: bold;
-}
-
-div.contributions div.feedback {
-	float: right;
-	background-color: white;
-	width: 75%;
-	margin-bottom: 30px;
+table, tr {
+	vertical-align: top;
 }

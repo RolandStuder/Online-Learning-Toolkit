@@ -4,6 +4,18 @@ one:
   peer_review_assignment: one
   text: solution one
 
-two:
-  peer_review_assignment: two
+3_1:
+  peer_review_assignment: 3_1
+  text: solution one
+
+3_2:
+  peer_review_assignment: 3_2
+  text: solution two
+
+4_1:
+  peer_review_assignment: 4_1
+  text: solution one
+
+4_2:
+  peer_review_assignment: 4_2
   text: solution two

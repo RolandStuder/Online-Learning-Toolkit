@@ -1,11 +1,12 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  peer_review_solution: one
-  peer_review_assignment: two
-  text: feedback one
+4_1:
+  peer_review_assignment: 4_1
+  peer_review_solution: 4_2
+  text:
 
-two:
-  peer_review_solution: two
-  peer_review_assignment: one
-  text: 
+4_2:
+  peer_review_assignment: 4_2
+  text: solution two
+  peer_review_solution: 4_1
+

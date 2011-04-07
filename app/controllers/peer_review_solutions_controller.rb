@@ -43,6 +43,8 @@ class PeerReviewSolutionsController < ApplicationController
   # GET /solutions/1/edit
   def edit
     @solution = PeerReviewSolution.find(params[:id])
+    @assignment = @solution.peer_review_assignment
+    
   end
 
   # POST /solutions

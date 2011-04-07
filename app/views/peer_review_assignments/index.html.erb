@@ -1,2 +1,11 @@
+<% if params[:anonymous] == "true" %>
+<%= link_to "Show email adresses", "/peer_reviews/#{@peer_review.id}/peer_review_assignments?anonymous=false", :class => "button" %>
+
+<% else %>
+
+<%= link_to "Hide email adresses", "/peer_reviews/#{@peer_review.id}/peer_review_assignments?anonymous=true", :class => "button" %>
+
+<% end %>
+
 <%= render 'contributions' %>
 

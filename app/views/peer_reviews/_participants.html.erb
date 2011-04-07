@@ -32,6 +32,7 @@
 				<% end %></td>
 		</tr>
 	<% end %>
+	<tr><td colspan="3"><%= link_to '+ Assign more participants', assign_peer_review_path(@peer_review), :class => "button" unless @peer_review.started? %></td>
 	</table>
 </section>
 </fieldset>
