@@ -64,6 +64,7 @@ class PeerReviewSolutionsController < ApplicationController
   # PUT /solutions/1.xml
   def update
     @solution = PeerReviewSolution.find(params[:id])
+    params[:peer_review_solution][:text] = params[:peer_review_solution][:text].gsub(/<!--(.|\s)*?-->/,"")
     @assignment = @solution.peer_review_assignment
     @peer_review = @assignment.peer_review
     
@@ -73,7 +74,7 @@ class PeerReviewSolutionsController < ApplicationController
     
     respond_to do |format|
       if @solution.update_attributes(params[:peer_review_solution])
-        format.html { redirect_to(@assignment, :notice => "sucessfully saved") }
+        format.html { redirect_to(@assignment, :notice => "Yay, sucessfully saved") }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

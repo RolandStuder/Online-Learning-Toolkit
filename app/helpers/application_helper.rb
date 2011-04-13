@@ -7,6 +7,12 @@ module ApplicationHelper
       end
   end
   
+  def strip_comments(text)
+    text = text.gsub("&lt;", "<")
+    text = text.gsub("&rt;", ">")
+    text = text.gsub(/<!--(.*?)-->/, "Hurraa!")
+  end
+  
   def sanitize_input
     
   end
