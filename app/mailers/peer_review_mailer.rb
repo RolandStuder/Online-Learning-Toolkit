@@ -12,9 +12,8 @@ class PeerReviewMailer < ActionMailer::Base
   
   def participant_task (peer_review, assignment, user)
     @peer_review = peer_review
-    @assignment = assignment
-    @user = user
-    mail( :to => @user.email,
+    @assingment = assignment
+    mail( :to => user.email,
           :subject => "You have a new task: " + peer_review.title)
   end
   

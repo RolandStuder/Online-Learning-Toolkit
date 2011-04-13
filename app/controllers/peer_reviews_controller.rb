@@ -111,36 +111,45 @@ class PeerReviewsController < ApplicationController
     @peer_review = PeerReview.find(params[:id])
     @assignments = @peer_review.peer_review_assignments.where(:participant => true)
     @participants = params[:participants]
-    @emails = @participants.split(/,|;|\n/)
+    
+    @emails = @participants.scan(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i)
+    
+    new_counter = 0
+    # @emails = @participants.split(/,|;|\n/)
     @emails.each do |email|
-      email = email.strip
+      # email = email.strip
       @user = User.find_or_create_by_email(email)
       unless @peer_review.peer_review_assignments.find_by_user_id(@user.id)
+          new_counter += 1
           @peer_review.peer_review_assignments.create([:user_id => @user.id, :peer_review_id => @peer_review.id, :participant => true])
       else
         @assignment = @peer_review.peer_review_assignments.find_by_user_id(@user.id)
+        new_counter += 1 unless @assignment.participant == true
         @assignment.participant = true
         @assignment.save
       end
     end
-        
+    
+    if new_counter > 0
+      flash[:success] = "#{new_counter} participants added"
+    else
+      flash[:error] = "No participants added. Check the list below to see, whether they were already assigned."
+    end
     redirect_to :action => "show"
   end
   
   def start
     @peer_review = PeerReview.find(params[:id])
     @assignments = @peer_review.peer_review_assignments.where(:participant => true)
-    @users = @peer_review.users.all
     @errors = []
     
-    if @users.count < @peer_review.number_of_feedbacks+1
-      flash[:error] = "You need to assign more people, you cannot have less people then the number of feedbacks that have to be given."
-      redirect_to :action => 'show'
+    if @assignments.count < @peer_review.number_of_feedbacks+1
+      flash.now[:error] = "You need to assign more people, you cannot have less people then the number of feedbacks that have to be given."
+      render :action => 'show'
     else
       unless @peer_review.started?
         @assignments.each do |a|
-          @user = User.find(a.user_id)
-          unless PeerReviewMailer.participant_task(@peer_review, a, @user).deliver
+          unless PeerReviewMailer.participant_task(@peer_review, a, a.user).deliver
                @errors << @user.email
           end
         end
@@ -153,12 +162,12 @@ class PeerReviewsController < ApplicationController
 
         @peer_review.started = true
         @peer_review.save
-        flash[:success] = "Peer Review successfully started, all participants have received an email with their task."
+        flash.now[:success] = "Peer Review successfully started, all participants have received an email with their task."
 
-        redirect_to :action => "show", :notice => "Peer Review successfully started, all participants have received an email with their task."
+        render :action => "show"
       else
-        flash[:error] = "The peer review was already started."
-        redirect_to :action => "show"
+        flash.now[:error] = "The peer review was already started."
+        render :action => "show"
       end
     end
     
