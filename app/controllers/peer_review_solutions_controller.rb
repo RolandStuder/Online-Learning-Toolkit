@@ -51,13 +51,17 @@ class PeerReviewSolutionsController < ApplicationController
   # POST /solutions.xml
   def create
     @assignment = PeerReviewAssignment.find(params[:peer_review_assignment_id])
-    @solution = @assignment.peer_review_solutions.create(params[:peer_review_solution])
-    @solution.save
-    @peer_review = @assignment.peer_review
+    if @assignment.peer_review_solutions.count == 0
+      @solution = @assignment.peer_review_solutions.create(params[:peer_review_solution])
+      @solution.save
+      @peer_review = @assignment.peer_review
     
-    @peer_review.start_feedbacks?
+      @peer_review.start_feedbacks?
     
-    redirect_to peer_review_assignment_path(@assignment), :notice => "You solution has been saved."
+      redirect_to peer_review_assignment_path(@assignment), :notice => "You solution has been saved."
+    else
+      redirect_to peer_review_assignment_path(@assignment), :notice => "You can only submit one solution."
+    end
   end
 
   # PUT /solutions/1

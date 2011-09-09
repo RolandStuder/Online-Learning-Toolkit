@@ -1,4 +1,5 @@
 <h1><%= @peer_review.title %></h1>
+<h1 class="quiet">Hello <%= @user.email %></h1>
 
 <!-- SUBMIT SOLUTION -->
 
@@ -46,7 +47,7 @@
 			<h2>Give <%= @peer_review.number_of_feedbacks %> feedbacks</h2>
 			<div class="feedback">			
 			<% @feedbacks.each_with_index do |feedback, index| %>
-					<%= index+1 %> Feedbacks given <%= link_to "show", peer_review_feedback_path(feedback) %>
+					<%= index+1 %> Feedbacks given <%= link_to "show", peer_review_feedback_path(feedback) %> <br />
 			<% end %>
 			</div>
 			
@@ -71,11 +72,7 @@
 
 <!-- READ FEEDBACK -->
 
-<% if @peer_review.reviewing == false %>
-	<div class="inactive">
-		<h2>Read feedback you got from your peers</h2>
-	</div>
-<% elsif @feedback_received %>
+<% if @feedback_received && @feedback_given  %>
 	<div class="done">
 		<h2>Read feedback you got from your peers</h2>
 			<div class="feedback">
@@ -87,8 +84,8 @@
 		</div>
 	</div>
 <% else %>
-<div class="inactive">
-	<h2>Read feedback you got from your peers</h2>
-	<p>Wait for feedback from others</p>
-</div>
+	<div class="inactive">
+		<h2>Read feedback you got from your peers</h2>
+		<p>Wait for feedback from others</p>
+	</div>
 <% end %>

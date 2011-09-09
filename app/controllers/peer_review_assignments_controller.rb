@@ -14,6 +14,7 @@ class PeerReviewAssignmentsController < ApplicationController
     @assignment = PeerReviewAssignment.find(params[:id])
     @peer_review = @assignment.peer_review
     @feedbacks = @assignment.peer_review_feedbacks.all
+    @user = @assignment.user
     
     @solution_none = true
     @solution_present = false
