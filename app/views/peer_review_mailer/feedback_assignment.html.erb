@@ -22,6 +22,6 @@
 <p>Your feedback is due until <%= @peer_review.feedback_due.to_s(:long) %>.</p>
 
 <p>Submit your feedback here: </p>
-<a href="<%= peer_review_assignment_url(@assignment) %>">
-	<%= peer_review_assignment_url(@assignment) %></a>
+<a href="http://online-learning-toolkit.heroku.com/peer_review_assignments/<%= @assignment.id %>">
+	http://online-learning-toolkit.heroku.com/peer_review_assignments/<%= @assignment.id %></a>
 </body></html>
