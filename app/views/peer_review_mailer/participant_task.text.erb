@@ -6,7 +6,7 @@ Please follow these instructions:
 
 <%= strip_tags(@peer_review.task) %>
 
-Your solution is due until <%= @peer_review.solution_due(:long) %>.
+Your solution is due until <%= @peer_review.solution_due %>.
 
 Submit your solution here: 
 http://online-learning-toolkit.heroku.com/peer_review_assignments/<%= @assignment.id %>

@@ -34,7 +34,7 @@
 <% elsif %>
 	<div class="warning">
 		Your exercise has not been started yet.
-		<%= form_for :peer_review, @peer_review, :url => {:action => 'start'} do %>
+		<%= form_for @peer_review, :url => {:action => 'start'} do %>
 			<%= submit_tag ("Start exercise now"), :class => "primary-button", :confirm => "Are you sure you want to start the exercise?
 			You have assigned #{@peer_review.participants.count} participants" %>
 		<% end %>
@@ -70,7 +70,7 @@
 <br />
 
 <section class="breathe">
-	<%= form_for :peer_review, @peer_review, :url => {:action => 'start'} do %>
+	<%= form_for @peer_review, :url => {:action => 'start'} do %>
 		<%= submit_tag ("Start exercise now"), :class => "primary-button breathe", :confirm => "Are you sure you want to start the exercise?
 		You have assigned #{@peer_review.participants.count} participants" unless @peer_review.started? %>
 	<% end %>

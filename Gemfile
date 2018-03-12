@@ -1,16 +1,20 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
-gem 'exception_notification_rails3', :require => 'exception_notifier'
+gem 'rails', '3.2.22'
+gem 'exception_notification', :require => 'exception_notifier'
 gem 'whenever', :require => false
-gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
+gem "authlogic", '3.1'
+gem 'prototype-rails'
 gem "rails3-generators"
+gem 'test-unit', '~> 3.0'
 
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'mail'
+
 
 # Use unicorn as the web server
 # gem 'unicorn'

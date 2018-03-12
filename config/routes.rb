@@ -33,7 +33,7 @@ App::Application.routes.draw do
           get 'temp'
           post 'assign_participants'
           get 'start_feedbacks_manually'
-          post 'start'
+          put 'start'
           get 'test'
         end
         
