@@ -1,7 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  email: roland.studer@psy.unibe.ch
+  email: roland.studer@gmail.com
 
 two:
   email: roland.studer@gmail.ch
