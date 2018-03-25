@@ -47,7 +47,8 @@ App::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  config.action_mailer.default_url_options = { :host => 'online-learning-toolkit.herokuapp.com' }
+  config.host_url = 'online-learning-toolkit.herokuapp.com'
+  config.action_mailer.default_url_options = { :host => config.host_url }
   
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {

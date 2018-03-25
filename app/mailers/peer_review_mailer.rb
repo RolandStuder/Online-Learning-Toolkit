@@ -1,6 +1,6 @@
 class PeerReviewMailer < ActionMailer::Base
   default :from => "online.learning.toolkit@gmail.com"
-  
+
   def setup (peer_review)
     @peer_review = peer_review
     @users = @peer_review.users.all

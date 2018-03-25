@@ -7,6 +7,7 @@ gem "authlogic", '3.1'
 gem 'prototype-rails'
 gem "rails3-generators"
 gem 'test-unit', '~> 3.0'
+gem 'pry'
 
 
 # Bundle edge Rails instead:

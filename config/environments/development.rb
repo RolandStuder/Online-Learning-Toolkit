@@ -25,6 +25,7 @@ App::Application.configure do
   
   config.action_mailer.delivery_method = :test
   
+  config.host_url = 'localhost:3000'
   config.action_mailer.default_url_options = {
     :host => 'localhost',
     :port => 3000
