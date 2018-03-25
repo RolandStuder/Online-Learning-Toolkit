@@ -2,3 +2,7 @@ Online Learning Toolkit
 
 Is a collection of a few scripts you can use, to do online learning.
 The first script allows you to organize a peer feedback exercise easily.
+
+To run postgres use:
+
+postgres -D /usr/local/var/postgres

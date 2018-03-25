@@ -18,10 +18,9 @@ gem 'mail'
 # 	gem 'sqlite3-ruby', :require => 'sqlite3'
 # end
 
-group :production do
-	gem 'pg'
-end
-
+gem 'activerecord-postgresql-adapter'
+# gem 'pg'
+gem 'pg', '~> 0.11'
 
 
 
