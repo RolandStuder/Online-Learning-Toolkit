@@ -42,5 +42,8 @@ module App
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    # vulnerability https://blog.heroku.com/rails-asset-pipeline-vulnerability
+    config.assets.compile = false
   end
 end
