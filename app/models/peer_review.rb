@@ -1,12 +1,12 @@
 class PeerReview < ActiveRecord::Base
   has_many :peer_review_assignments
-  has_many :users, :through => :peer_review_assignments, :order => "email ASC"
+  has_many :users, through: :peer_review_assignments
   has_many :peer_review_solutions, :through => :peer_review_assignments
   has_many :peer_review_feedbacks, :through => :peer_review_assignments
   
   validates_presence_of :title, :task, :number_of_feedbacks
   
-  validates :email, :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}  
+  validates :email, :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}  
   
   validate :timeliness_given
   

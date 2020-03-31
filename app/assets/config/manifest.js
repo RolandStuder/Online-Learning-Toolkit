@@ -1,0 +1,1 @@
+// empty manifese files, as rails 4 asks for it

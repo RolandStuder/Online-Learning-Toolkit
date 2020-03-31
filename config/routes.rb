@@ -9,7 +9,7 @@ App::Application.routes.draw do
   resources :users
   
   get 'login' => 'user_sessions#new', :as => :login
-  post 'login' => 'user_sessions#create', :as => :login
+  post 'login' => 'user_sessions#create'
   delete 'logout' => 'user_sessions#destroy', :as => :logout
   get 'test' => 'user_sessions#test', :as => :test
 
@@ -64,9 +64,9 @@ App::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
 
-  match "/peer_review_feedbacks/:id/:action" => "peer_review_feedbacks#:action"
-  match ':action' => 'show#:action'
-  match '/' => 'show#welcome'
+  get "/peer_review_feedbacks/:id/:action" => "peer_review_feedbacks#:action"
+  get ':action' => 'show#:action'
+  get '/' => 'show#welcome'
   
   
 	

@@ -9,36 +9,39 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110301142605) do
+ActiveRecord::Schema.define(version: 20110301142605) do
 
-  create_table "peer_review_assignments", :force => true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "peer_review_assignments", force: :cascade do |t|
     t.integer  "peer_review_id"
     t.integer  "user_id"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.boolean  "admin",          :default => false
-    t.boolean  "participant",    :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "admin",          default: false
+    t.boolean  "participant",    default: false
   end
 
-  create_table "peer_review_feedbacks", :force => true do |t|
+  create_table "peer_review_feedbacks", force: :cascade do |t|
     t.text     "text"
     t.integer  "peer_review_assignment_id"
     t.integer  "peer_review_solution_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "peer_review_solutions", :force => true do |t|
+  create_table "peer_review_solutions", force: :cascade do |t|
     t.text     "text"
     t.integer  "peer_review_assignment_id"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.boolean  "feedback_returned",         :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "feedback_returned",         default: false
   end
 
-  create_table "peer_reviews", :force => true do |t|
+  create_table "peer_reviews", force: :cascade do |t|
     t.string   "title"
     t.text     "task"
     t.datetime "solution_due"
@@ -46,17 +49,17 @@ ActiveRecord::Schema.define(:version => 20110301142605) do
     t.datetime "feedback_due"
     t.string   "email"
     t.integer  "number_of_feedbacks"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.boolean  "started",               :default => false
-    t.boolean  "reviewing",             :default => false
-    t.boolean  "finished",              :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "started",               default: false
+    t.boolean  "reviewing",             default: false
+    t.boolean  "finished",              default: false
   end
 
-  create_table "users", :force => true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "persistence_token"
   end
 

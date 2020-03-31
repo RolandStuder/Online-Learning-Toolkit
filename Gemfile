@@ -1,10 +1,9 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.22'
+gem 'rails', '~> 4.0'
 gem 'exception_notification', :require => 'exception_notifier'
 gem 'whenever', :require => false
 gem "authlogic", '3.1'
-gem 'prototype-rails'
 gem "rails3-generators"
 gem 'test-unit', '~> 3.0'
 gem 'pry'
