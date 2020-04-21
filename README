@@ -11,3 +11,4 @@ postgres -D /usr/local/var/postgres
 # TODO: Allow to actually give feedback, view is blocking this
 # TODO; Reviews should be enabled, as soon as mails go out, not as due date arrives, on an individual basis
 # TODO: Safer URLs for students and teachers with some kind of token
+# TODO: Check if we still need any of the public/javascripts

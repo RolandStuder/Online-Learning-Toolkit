@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
   helper_method :admin?
   helper_method :current_user_session, :current_user
 
-  before_filter :get_session
-  before_filter :authorize, :only => :destroy
+  before_action :get_session
+  before_action :authorize, :only => :destroy
 
 
 

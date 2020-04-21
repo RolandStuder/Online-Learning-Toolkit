@@ -1,6 +1,6 @@
 class UserSessionsController < ApplicationController
-  # before_filter :require_no_user, <img src="http://www.dixis.com/wp-includes/images/smilies/icon_surprised.gif" alt=":o" class="wp-smiley"> nly => [:new, :create]
-  # before_filter :require_user, <img src="http://www.dixis.com/wp-includes/images/smilies/icon_surprised.gif" alt=":o" class="wp-smiley"> nly => :destroy
+  # before_action :require_no_user, <img src="http://www.dixis.com/wp-includes/images/smilies/icon_surprised.gif" alt=":o" class="wp-smiley"> nly => [:new, :create]
+  # before_action :require_user, <img src="http://www.dixis.com/wp-includes/images/smilies/icon_surprised.gif" alt=":o" class="wp-smiley"> nly => :destroy
 
   def new
     @user_session = UserSession.new
@@ -24,12 +24,12 @@ class UserSessionsController < ApplicationController
     # flash[:notice] = "Logout successful!"
     # redirect_back_or_default new_user_session_url
   end
-  
-  def test 
+
+  def test
     @token = params[:token]
     session.destroy
-    UserSession.new 
+    UserSession.new
     session[:user_id] = User.find_by_persistence_token(@token).id
   end
-  
+
 end

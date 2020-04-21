@@ -2,19 +2,17 @@
 <html>
 <head>
   <title>Peer Review</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :all %>
   <%= javascript_include_tag "tiny_mce/tiny_mce" %>
 	<script type="text/javascript" charset="utf-8">
 		tinyMCE.init({
 						mode : "specific_textareas",
 		        editor_selector : "mceEditor",
 						plugins : "paste",
-		        
+
 						theme_advanced_buttons3_add : "pastetext,pasteword,selectall",
 		        paste_auto_cleanup_on_paste : true,
-		
-		
+
+
 						theme: "advanced",
 						theme_advanced_buttons1 : "bold,italic,underline,separator,bullist,numlist,separator,undo,redo",
 
@@ -24,21 +22,20 @@
 						theme_advanced_toolbar_location: "top",
 
 						theme_advanced_toolbar_align: "left"
-						
-						
+
+
 		});
 	</script>
 
 
   <%= csrf_meta_tag %>
- 
+
 
 	<script type="text/javascript"> var uservoiceOptions = {   /* required */   key: 'olt',   host: 'olt.uservoice.com',    forum: '109439',   showTab: true,     /* optional */   alignment: 'left',   background_color:'#f00',    text_color: 'white',   hover_color: '#06C',   lang: 'en' };  function _loadUserVoice() {   var s = document.createElement('script');   s.setAttribute('type', 'text/javascript');   s.setAttribute('src', ("https:" == document.location.protocol ? "https://" : "http://") + "cdn.uservoice.com/javascripts/widgets/tab.js");   document.getElementsByTagName('head')[0].appendChild(s); } _loadSuper = window.onload; window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); }; </script>
 </head>
 <body>
 
 <div class="container">
-	<img src="/images/ub_166px.jpg" style="float: right">
 <!-- <div class="horizontal_link_list secondary padded" id="primary_navigation">
 	<%= link_to "Home", '/' %>
 	<%= link_to "New", '/peer_reviews/new' %>
@@ -46,10 +43,10 @@
 		<%= link_to "Peer Reviews", '/peer_reviews' %>
 	<% end %>
 </div> -->
-	
+
 <% flash_messages %>
 
-	
+
 <%= yield %>
 
 <div class="smaller silent border-top breathe span-12" style="clear:both">
