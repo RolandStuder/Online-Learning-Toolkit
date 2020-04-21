@@ -4,18 +4,18 @@ App::Application.routes.draw do
 
   resources :peer_review_feedbacks
   resources :peer_review_solutions
-  
+
 
   resources :users
-  
+
   get 'login' => 'user_sessions#new', :as => :login
   post 'login' => 'user_sessions#create'
   delete 'logout' => 'user_sessions#destroy', :as => :logout
   get 'test' => 'user_sessions#test', :as => :test
 
   resources :user_sessions
-  
-  
+
+
 
   resources :peer_review_assignments do
     get 'solution'
@@ -26,20 +26,20 @@ App::Application.routes.draw do
   resources :peer_reviews do
         resources :peer_review_assignments
         resources :peer_review_solutions
-        
+
         member do
           post 'assign'
           get 'assign'
           get 'temp'
           post 'assign_participants'
           get 'start_feedbacks_manually'
-          put 'start'
+          patch 'start'
           get 'test'
         end
-        
+
   end
-  
-  
+
+
 
   # Sample resource route with more complex sub-resources
   #   resources :products do
@@ -67,7 +67,7 @@ App::Application.routes.draw do
   get "/peer_review_feedbacks/:id/:action" => "peer_review_feedbacks#:action"
   get ':action' => 'show#:action'
   get '/' => 'show#welcome'
-  
-  
-	
+
+
+
 end
