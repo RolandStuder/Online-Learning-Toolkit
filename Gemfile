@@ -23,7 +23,9 @@ gem 'activerecord-postgresql-adapter'
 gem 'pg', '~> 0.11'
 
 
-
+group :development do
+  gem "letter_opener"
+end
 # Use unicorn as the web server
 # gem 'unicorn'
 

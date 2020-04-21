@@ -37,6 +37,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     arel (6.0.4)
     authlogic (3.1.0)
       activerecord (>= 3.0.7)
@@ -53,6 +55,10 @@ GEM
       activesupport (>= 4.2.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.7.0)
+      launchy (~> 2.2)
     loofah (2.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -69,6 +75,7 @@ GEM
     pry (0.13.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    public_suffix (4.0.4)
     rack (1.6.13)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -122,6 +129,7 @@ DEPENDENCIES
   activerecord-postgresql-adapter
   authlogic (= 3.1)
   exception_notification
+  letter_opener
   mail
   pg (~> 0.11)
   pry

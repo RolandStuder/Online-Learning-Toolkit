@@ -7,7 +7,7 @@ class PeerReviewFeedbacksController < ApplicationController
     # @peer_review = @assignment.peer_review
     # @peer_review_feedbacks = @assignment.peer_review_feedbacks.all
     # @feedbacks = @peer_review_feedbacks
-    # 
+    #
     # respond_to do |format|
     #   format.html # index.html.erb
     #   format.xml  { render :xml => @peer_review_feedbacks }
@@ -32,15 +32,15 @@ class PeerReviewFeedbacksController < ApplicationController
   def new
     @assignment = PeerReviewAssignment.find(params[:id])
     @peer_review = @assignment.peer_review
-    
+
     unless @assignment.peer_review_feedbacks.all.count >= @peer_review.number_of_feedbacks
       @solutions = @peer_review.peer_review_solutions.find( :all,
                                 # :conditions => [ 'peer_review_assignment_id NOT ?', '1'],
-                                :select=> 'peer_review_solutions.*, count(peer_review_feedbacks.id) as feedback_count', 
-                                :joins => 'left outer join peer_review_feedbacks on peer_review_feedbacks.peer_review_solution_id = peer_review_solutions.id', 
+                                :select=> 'peer_review_solutions.*, count(peer_review_feedbacks.id) as feedback_count',
+                                :joins => 'left outer join peer_review_feedbacks on peer_review_feedbacks.peer_review_solution_id = peer_review_solutions.id',
                                 :group => 'peer_review_solutions.id',
                                 :order => 'feedback_count asc')
-      
+
       @exclude = PeerReviewSolution.find_all_by_peer_review_assignment_id(@assignment.id)
 
       unless @solutions.first.peer_review_assignment_id == @assignment.id
@@ -48,14 +48,14 @@ class PeerReviewFeedbacksController < ApplicationController
         @feedback = @solution.peer_review_feedbacks.new
         @feedback.peer_review_assignment = @assignment
         @feedback.save
-        render 'new'      
+        render 'new'
       else
-        redirect_to :controller => 'peer_review_assignments', :action => 'show', :id => @assignment.id , :notice => 'No solution available for feedback.' 
+        redirect_to :controller => 'peer_review_assignments', :action => 'show', :id => @assignment.id , :notice => 'No solution available for feedback.'
       end
-      
+
 
     else
-      redirect_to :controller => 'peer_review_assignments', :action => 'show', :id => @assignment.id , :notice => 'You already have provided enough feedbacks.' 
+      redirect_to :controller => 'peer_review_assignments', :action => 'show', :id => @assignment.id , :notice => 'You already have provided enough feedbacks.'
     end
   end
 
@@ -70,7 +70,7 @@ class PeerReviewFeedbacksController < ApplicationController
   # POST /peer_review_feedbacks
   # POST /peer_review_feedbacks.xml
   def create
-    @feedback = PeerReviewFeedback.new(params[:peer_review_feedback])
+    @feedback = PeerReviewFeedback.new(feedback_params)
 
     if @feedback.save
       redirect_to :controller => 'peer_review_assignments', :action => 'index', :id => @feedback.peer_review_assgignment_id , :notice => 'Peer review feedback was successfully created.'
@@ -84,13 +84,13 @@ class PeerReviewFeedbacksController < ApplicationController
   def update
     @feedback = PeerReviewFeedback.find(params[:id])
 
-        
+
     respond_to do |format|
-      if @feedback.update_attributes(params[:peer_review_feedback])
+      if @feedback.update_attributes(feedback_params)
         @peer_review = @feedback.peer_review_assignment.peer_review
         @peer_review.check_if_feedback_is_complete
         @feedback.peer_review_solution.check_if_feedback_is_complete
-        
+
         format.html { redirect_to(@feedback.peer_review_assignment, :notice => 'Peer review feedback was successfully saved.') }
         format.xml  { head :ok }
       else
@@ -110,5 +110,11 @@ class PeerReviewFeedbacksController < ApplicationController
       format.html { redirect_to(peer_review_feedbacks_url) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+
+  def feedback_params
+    params.require(:peer_review_feedback).permit(:text)
   end
 end

@@ -6,3 +6,8 @@ The first script allows you to organize a peer feedback exercise easily.
 To run postgres use:
 
 postgres -D /usr/local/var/postgres
+
+# TODO: Rename peer_review_... models
+# TODO: Allow to actually give feedback, view is blocking this
+# TODO; Reviews should be enabled, as soon as mails go out, not as due date arrives, on an individual basis
+# TODO: Safer URLs for students and teachers with some kind of token

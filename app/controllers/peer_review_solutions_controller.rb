@@ -1,8 +1,8 @@
 class PeerReviewSolutionsController < ApplicationController
   # GET /solutions
   # GET /solutions.xml
-  
-  
+
+
   def index
     @peer_review = PeerReview.find(params[:peer_review_id])
     @solutions = @peer_review.peer_review_solutions.find(:all)
@@ -44,7 +44,7 @@ class PeerReviewSolutionsController < ApplicationController
   def edit
     @solution = PeerReviewSolution.find(params[:id])
     @assignment = @solution.peer_review_assignment
-    
+
   end
 
   # POST /solutions
@@ -52,12 +52,12 @@ class PeerReviewSolutionsController < ApplicationController
   def create
     @assignment = PeerReviewAssignment.find(params[:peer_review_assignment_id])
     if @assignment.peer_review_solutions.count == 0
-      @solution = @assignment.peer_review_solutions.create(params[:peer_review_solution])
+      @solution = @assignment.peer_review_solutions.create(peer_review_solution_params)
       @solution.save
       @peer_review = @assignment.peer_review
-    
+
       @peer_review.start_feedbacks?
-    
+
       redirect_to peer_review_assignment_path(@assignment), :notice => "You solution has been saved."
     else
       redirect_to peer_review_assignment_path(@assignment), :notice => "You can only submit one solution."
@@ -71,13 +71,13 @@ class PeerReviewSolutionsController < ApplicationController
     params[:peer_review_solution][:text] = params[:peer_review_solution][:text].gsub(/<!--(.|\s)*?-->/,"")
     @assignment = @solution.peer_review_assignment
     @peer_review = @assignment.peer_review
-    
-    
+
+
     @peer_review.start_feedbacks?
-    
-    
+
+
     respond_to do |format|
-      if @solution.update_attributes(params[:peer_review_solution])
+      if @solution.update_attributes(peer_review_solution_params)
         format.html { redirect_to(@assignment, :notice => "Yay, sucessfully saved") }
         format.xml  { head :ok }
       else
@@ -97,5 +97,11 @@ class PeerReviewSolutionsController < ApplicationController
       format.html { redirect_to(solutions_url) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+
+  def peer_review_solution_params
+    params.require(:peer_review_solution).permit(:text)
   end
 end

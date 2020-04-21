@@ -2,26 +2,26 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   # filter_parameter_logging :password
 
-  
+
   helper_method :admin?
   helper_method :current_user_session, :current_user
-  
+
   before_filter :get_session
   before_filter :authorize, :only => :destroy
-  
-  
-  
-  
+
+
+
+
   def get_session
       unless params[:token].nil?
         session.destroy
-        UserSession.new 
+        UserSession.new
         session[:user_id] = User.find_by_persistence_token(params[:token]).id
       end
   end
-  
+
   private
-  
+
   def current_user_session
     logger.debug "ApplicationController::current_user_session"
     return @current_user_session if defined?(@current_user_session)
@@ -62,16 +62,14 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
-  
-  
+
+
   protected
-    
+
   def authorize
     authenticate_or_request_with_http_basic do |username, password|
       username == "admin" && password == "82-http-basic"
       session[:super_user] = true
     end
   end
-  
-  
 end
